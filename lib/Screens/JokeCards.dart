@@ -21,57 +21,74 @@ class _JokeCardState extends State<JokeCard> {
   @override
   Widget build(BuildContext context) {
     JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
-    final currentIndex = jokeProvider.currentIndex;
-    final jokeData = jokeProvider.jokeList[currentIndex];
-    final id = jokeData.id;
-    final joke = jokeData.joke;
-    final status = jokeData.status;
+    if (jokeProvider.currentIndex != null && jokeProvider.jokeList != null &&
+        jokeProvider.currentIndex < jokeProvider.jokeList.length) {
+      return Consumer<JokeProvider>(
+          builder: (_, jokeProvider, __) {
+            final currentIndex = jokeProvider.currentIndex;
+
+            final jokeData = jokeProvider.jokeList[currentIndex];
+            final id = jokeData.id;
+            final joke = jokeData.joke;
+            final status = jokeData.status;
 
 
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-            gradient: kBgGradient
-        ),
-          child:Column(
-            children: [
-              SizedBox(height: 45,),
-              CustomAppBar(context,'',true,false),
-              SizedBox(height: 85,),
-              CardContainer(
-                context, id??"", joke??"", widget.isFav,),
-              SizedBox(height: 25,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                        final newIndex = currentIndex - 1;
-                        if (newIndex >= 0) {
-                          jokeProvider.currentIndex = newIndex;
-                        }
-                      },
-                        child: AppIcons.leftArrow),
-                    GestureDetector(
-                        onTap: (){
-                          final newIndex = currentIndex + 1;
-                          if (newIndex < jokeProvider.jokeList.length) {
-                            jokeProvider.currentIndex = newIndex;
-                          }
-                        },
-                        child: AppIcons.rightArrow)
-                  ],
-                ),
-              )
+            return Scaffold(
+              body: Container(
+                  decoration: BoxDecoration(
+                      gradient: kBgGradient
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 45,),
+                      CustomAppBar(context, '', true, false),
+                      SizedBox(height: 85,),
+                      CardContainer(
+                        context, id ?? "", joke ?? "", widget.isFav,),
+                      SizedBox(height: 25,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                                onTap: () {
+                                  final newIndex = currentIndex - 1;
+                                  if (newIndex >= 0) {
+                                    jokeProvider.currentIndex = newIndex;
+                                  }
+                                  else{
+                                    jokeProvider.currentIndex = jokeProvider.jokeList.length;
+                                  }
+                                },
+                                child: AppIcons.leftArrow),
+                            GestureDetector(
+                                onTap: () {
+                                  final newIndex = currentIndex + 1;
+                                  if (newIndex < jokeProvider.jokeList.length) {
+                                    jokeProvider.currentIndex = newIndex;
+                                  }
+                                  else{
+                                    jokeProvider.currentIndex = 0;
+                                  }
+                                },
+                                child: AppIcons.rightArrow)
+                          ],
+                        ),
+                      )
 
-            ],
-          )
-      ),
+                    ],
+                  )
+              ),
 
 
+            );
+          }
+      );
+    }
+          else {
+            return Container();
+          }
 
-    );
   }
 }
