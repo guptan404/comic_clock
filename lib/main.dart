@@ -1,3 +1,4 @@
+import 'package:comic_clock/Screens/splash.dart';
 import 'package:comic_clock/Widgets/ListCardContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
            // onGenerateRoute: (settings) => generateRoute(settings),
           ),
-          home: JokeListView2(),
+          home: Splash(),
         )
     );
   }

@@ -16,7 +16,7 @@ class JokeProvider with ChangeNotifier {
 
   //get jokeList and jokeListFav from shared preferences
 
-   void getJokesFromSharedPrefrences() async {
+   Future<void> getJokesFromSharedPrefrences() async {
      print("getJokesFromSharedPrefrences is called");
      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
      String? jokeListString = sharedPreferences.getString("jokeList");
