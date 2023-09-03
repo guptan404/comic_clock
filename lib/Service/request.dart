@@ -7,15 +7,19 @@ const BASE_URL = 'https://geek-jokes.sameerkumar.website/api?format=json';
 
 class JokeService {
   Future<JokeModel> getJoke() async {
-    try {
-      var response = await http.get(Uri.parse(BASE_URL));
-      if (response.statusCode == 200) {
-        return JokeModel.fromJson(json.decode(response.body));
-      } else {
-        throw Exception('Failed to load joke');
-      }
-    } catch (err) {
-      throw Exception(err.toString());
+    var request = http.Request('GET', Uri.parse('https://geek-jokes.sameerkumar.website/api?format=json'));
+
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var body=await response.stream.bytesToString();
+      print(body);
+      return JokeModel.fromJson(json.decode(body));
+    }
+    else {
+      print(response.reasonPhrase);
+      throw Exception('Failed to load joke');
     }
   }
 }

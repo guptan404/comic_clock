@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Utils/constants.dart';
+
 class CardContainer extends StatelessWidget {
   final int id;
   final String joke;
@@ -53,8 +55,8 @@ class CardContainer extends StatelessWidget {
           ),
 
           Visibility(
-            visible:true//not if status is true
-          Positioned(//
+            visible:true,//not if status is true
+          child:Positioned(//
             top: 10,
             left: (MediaQuery.of(context).size.width * 0.75 - 20) / 2,
             child: Text(

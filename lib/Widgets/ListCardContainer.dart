@@ -1,9 +1,15 @@
 
 
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../Providers/JokeProvider.dart';
+import '../Utils/constants.dart';
+
 class ListCardContainer extends StatelessWidget {
-  final int id;
+  final String id;
   final String joke;
-  final bool status;
+  final String status;
 
   ListCardContainer({required this.id, required this.joke, required this.status});
 
@@ -40,7 +46,7 @@ class ListCardContainer extends StatelessWidget {
             ),
             Center(
               child: Text(
-                'text',//joke
+                joke,//joke
                 style: AppConstants.kText,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis, // Display ellipsis for long text
@@ -65,6 +71,7 @@ class _JokeListViewState extends State<JokeListView> {
 
   @override
   Widget build(BuildContext context) {
+    JokeProvider jokeProvider = Provider.of<JokeProvider>(context);
     final emojiTags = [
       '😀',
       '🤣',
@@ -111,9 +118,9 @@ class _JokeListViewState extends State<JokeListView> {
         Container(
           height:  MediaQuery.of(context).size.height * 0.56,
           child: ListView.builder(
-            itemCount: JokeProvider.jokefavlist[selectedEmoji]?.length ?? 0,
+            itemCount: jokeProvider.jokeListFav[selectedEmoji]?.length ?? 0,
             itemBuilder: (context, index) {
-              final favJoke = JokeProvider.jokefavlist[selectedEmoji]?[index] ?? '';
+              final favJoke = jokeProvider.jokeListFav[selectedEmoji]?[index].joke ?? '';
 
               return ListTile(
                 title: Text(favJoke),
@@ -129,22 +136,25 @@ class _JokeListViewState extends State<JokeListView> {
     );
   }
 }
-//joke list
-class JokeListView extends StatelessWidget {
+
+class JokeListView2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print("object is called");
+    JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
+    jokeProvider.getJokesFromSharedPrefrences();
     return ListView.builder(
-      itemCount: JokeProvider.jokelist.length,
+      itemCount: jokeProvider.jokeList.length,
       itemBuilder: (context, index) {
-        final jokeData = JokeProvider.jokelist[index];
+        final jokeData = jokeProvider.jokeList[index];
         final id = jokeData.id;
         final joke = jokeData.joke;
         final status = jokeData.status;
 
         return ListCardContainer(
-          id: id,
-          joke: joke,
-          status: status,
+          id: id??"",
+          joke: joke??"",
+          status: status??"",
         );
       },
     );
