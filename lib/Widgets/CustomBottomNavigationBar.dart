@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../Utils/Bouncing.dart';
 import '../Utils/GradientIcons.dart';
 import '../Utils/constants.dart';
 import 'CustomShape.dart';
@@ -57,8 +58,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                GestureDetector(
-                  onTap: () => _handleTabSelected(0),
+                Bouncing(
+                  onPress: () => _handleTabSelected(0),
                   child: Padding(
                     padding: EdgeInsets.only(bottom: h/5.5),
                     child:
@@ -70,8 +71,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   ),
                 ),
 
-                GestureDetector(
-                  onTap: () => _handleTabSelected(1),
+                Bouncing(
+                  onPress: () => _handleTabSelected(1),
                   child: Padding(
                     padding: EdgeInsets.only(bottom: h/3),
                     child: Image.asset(
@@ -81,15 +82,15 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () => _handleTabSelected(2),
+                Bouncing(
+                  onPress: () => _handleTabSelected(2),
                   child: Padding(
-                      padding: EdgeInsets.only(bottom: h/5.5),
-                      child: GradientIcon(
-                        Icons.person,
-                        45,
-                        kAccentGradient,
-                      )
+                    padding: EdgeInsets.only(bottom: h/5.5),
+                    child: GradientIcon(
+                      Icons.person,
+                      45,
+                      kAccentGradient,
+                    ),
                   ),
                 ),
               ],

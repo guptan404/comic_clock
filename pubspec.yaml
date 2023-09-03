@@ -40,6 +40,8 @@ dependencies:
   http: ^1.1.0
   icons_plus: ^4.0.0
   google_fonts: ^4.0.1
+  simple_animations: ^5.0.2
+  delayed_widget: ^1.1.2
 
 dev_dependencies:
   flutter_test:

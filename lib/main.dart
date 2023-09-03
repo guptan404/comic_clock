@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Providers/JokeProvider.dart';
+import 'Widgets/ParticleModel.dart';
 
 void main() {
   runApp(const MyApp());

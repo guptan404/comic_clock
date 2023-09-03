@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+
+class Bouncing extends StatefulWidget {
+  final Widget child;
+  final VoidCallback onPress;
+
+  Bouncing({required this.child, required this.onPress})
+      : assert(child != null),
+        assert(onPress != null);
+
+  @override
+  _BouncingState createState() => _BouncingState();
+}
+
+class _BouncingState extends State<Bouncing>
+    with SingleTickerProviderStateMixin {
+  late double _scale;
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    //AnimationController to move left to right bounce
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 100),
+      lowerBound: 0.0,
+      upperBound: 0.1,
+    );
+    _controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _scale = 1 - _controller.value;
+    return Listener(
+      onPointerDown: (PointerDownEvent event) {
+        if (widget.onPress != null) {
+          _controller.forward();
+        }
+      },
+      onPointerUp: (PointerUpEvent event) {
+        if (widget.onPress != null) {
+          _controller.reverse();
+          widget.onPress();
+        }
+      },
+      //let to right animation
+
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: Offset.zero,
+          end: const Offset(0.0, 1.5),
+        ).animate(_controller),
+        child: Transform.scale(
+          scale: _scale,
+          child: widget.child,
+        ),
+      ),
+    );
+  }
+}
