@@ -113,7 +113,7 @@ String smileEmoImg="assets/smilingEmoji.png";
 String sunglassEmoImg="assets/sunglassEmoji.png";
 String thinkEmoImg="assets/thinkingEmoji.png";
 String pleadEmoImg="assets/pleadEmoji.png";
-
+String logo='assets/Logo.png';
 
 
 

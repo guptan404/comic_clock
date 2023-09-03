@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: 45,),
-            CustomAppBar(context,'',false,true),
+            CustomAppBar(context,false,true),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Consumer<JokeProvider>(
