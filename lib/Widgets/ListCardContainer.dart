@@ -158,10 +158,15 @@ class JokeListView2 extends StatelessWidget {
           final joke = jokeData.joke;
           final status = jokeData.status;
 
-          return ListCardContainer(
-            id: id??"",
-            joke: joke??"",
-            status: status??"",
+          return InkWell(
+            onTap: (){
+              jokeProvider.addJokeToFav(jokeData, "😀");
+            },
+            child: ListCardContainer(
+              id: id??"",
+              joke: joke??"",
+              status: status??"",
+            ),
           );
         },
       ),

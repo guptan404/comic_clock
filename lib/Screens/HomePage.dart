@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 5,),
               CustomAppBar(context,''),
               Container(
-                height: height-250,
+                height: height-242,
                   child: JokeListView2()),
             ],
           ),

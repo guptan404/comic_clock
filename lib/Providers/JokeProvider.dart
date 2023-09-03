@@ -9,7 +9,7 @@ import '../Model/JokeModel.dart';
 
 class JokeProvider with ChangeNotifier {
   List<JokeModel> jokeList = [];
-  Map<String,List<JokeModel>> jokeListFav = {};
+  Map<String,List<JokeModel>> jokeListFav = {"😀":[]};
 
   JokeService jokeService = JokeService();
 
@@ -21,7 +21,7 @@ class JokeProvider with ChangeNotifier {
      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
      String? jokeListString = sharedPreferences.getString("jokeList");
      String? jokeListFavString = sharedPreferences.getString("jokeListFav");
-     print("jokeList is $jokeListString");
+     print("jokeListFav is $jokeListFavString");
      if (jokeListString != null) {
        List<dynamic> jokeListJson = jsonDecode(jokeListString);
        jokeList = jokeListJson.map((e) => JokeModel.fromJson(e)).toList();
@@ -46,6 +46,34 @@ class JokeProvider with ChangeNotifier {
       Timer.periodic(const Duration(seconds: 60), (timer) {
         getJokes(1);
       });
+    }
+
+    void removeJokeFromFav(JokeModel jokeModel,String emojiTag) async {
+      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+      jokeListFav[emojiTag]?.remove(jokeModel);
+      sharedPreferences.setString("jokeListFav", jsonEncode(jokeListFav));
+      notifyListeners();
+    }
+
+    void createNewFavoriteEmoji(String emojiTag) async {
+      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+      jokeListFav[emojiTag] = [];
+      sharedPreferences.setString("jokeListFav", jsonEncode(jokeListFav));
+      notifyListeners();
+    }
+
+    void addJokeToFav(JokeModel jokeModel,String emojiTag) async {
+      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+      if(jokeListFav.containsKey(emojiTag))
+      {
+        jokeListFav[emojiTag]?.add(jokeModel);
+      }
+      else
+      {
+        jokeListFav[emojiTag] = [jokeModel];
+      }
+      sharedPreferences.setString("jokeListFav", jsonEncode(jokeListFav));
+      notifyListeners();
     }
 
    Future<void> getJokes(int count)
