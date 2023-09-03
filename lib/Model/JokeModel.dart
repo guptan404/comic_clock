@@ -5,6 +5,12 @@ class JokeModel {
 
   JokeModel({this.id, this.joke, this.status});
 
+  Map toJson() => {
+    'id': id,
+    'joke': joke,
+    'status': status,
+  };
+
   JokeModel.fromJson(Map<String, dynamic> json) {
     id = DateTime.now().millisecondsSinceEpoch.toString();
     joke = json['joke'];
