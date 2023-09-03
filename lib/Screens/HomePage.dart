@@ -3,6 +3,7 @@ import 'package:delayed_widget/delayed_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:text_to_speech/text_to_speech.dart';
 
 import '../Providers/JokeProvider.dart';
 import '../Utils/constants.dart';
@@ -30,6 +31,7 @@ class _HomePageState extends State<HomePage> {
         });
       }
     });
+
   }
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:text_to_speech/text_to_speech.dart';
 
 import '../Utils/constants.dart';
 
@@ -72,11 +74,16 @@ import '../Utils/constants.dart';
               children: [
 
                 GestureDetector(
-                  onTap: (){},
+                  onTap: () async {
+                    _onShare(context,joke);
+                  },
                   child: AppIcons.share,
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    TextToSpeech textToSpeech = TextToSpeech();
+                    textToSpeech.speak(joke);
+                  },
                   child: AppIcons.voice,
                 ),
               ],
@@ -91,5 +98,37 @@ import '../Utils/constants.dart';
 
     );
   }
+
+String subject = 'hello';
+String uri = '';
+List<String> imageNames = [];
+List<String> imagePaths = [];
+void _onShare(BuildContext context,String text) async {
+  // A builder is used to retrieve the context immediately
+  // surrounding the ElevatedButton.
+  //
+  // The context's `findRenderObject` returns the first
+  // RenderObject in its descendent tree when it's not
+  // a RenderObjectWidget. The ElevatedButton's RenderObject
+  // has its position and size after it's built.
+  final box = context.findRenderObject() as RenderBox?;
+
+  if (uri.isNotEmpty) {
+    await Share.shareUri(Uri.parse(uri));
+  } else if (imagePaths.isNotEmpty) {
+    final files = <XFile>[];
+    for (var i = 0; i < imagePaths.length; i++) {
+      files.add(XFile(imagePaths[i], name: imageNames[i]));
+    }
+    await Share.shareXFiles(files,
+        text: text,
+        subject: subject,
+        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  } else {
+    await Share.share(text,
+        subject: subject,
+        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  }
+}
 
 
