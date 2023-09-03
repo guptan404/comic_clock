@@ -1,6 +1,7 @@
 import 'package:comic_clock/Providers/JokeProvider.dart';
 import 'package:comic_clock/Screens/BottomBar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../Widgets/CustomShape.dart';
 import '../Widgets/ListCardContainer.dart';
@@ -26,9 +27,10 @@ class _SplashState extends State<Splash> {
 
   Future<void> getJokesData()
   async {
-    JokeProvider jokeProvider = JokeProvider();
+    JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
     await jokeProvider.getJokesFromSharedPrefrences();
     loading =false;
+    // jokeProvider.getJokeEveryMinute();
     setState(() {
 
     });

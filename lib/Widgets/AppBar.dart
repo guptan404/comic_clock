@@ -9,7 +9,7 @@ import '../Utils/GradientIcons.dart';
 
 Widget CustomAppBar(BuildContext context,String type,bool backVisible,bool sortVIsible) {
   JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
-  jokeProvider.getJokesFromSharedPrefrences();
+  // jokeProvider.getJokesFromSharedPrefrences();
 
     return Consumer<JokeProvider>(
       builder: (_,jokeProvider,__) {

@@ -32,8 +32,8 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
-    jokeProvider.getJokesFromSharedPrefrences();
+    // JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
+    // jokeProvider.getJokesFromSharedPrefrences();
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
 
@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(top: 8.0),
               child: Consumer<JokeProvider>(
                 builder: (_,jokeProvider,__) {
+                  print("jokeProvider.jokeList.length ${jokeProvider.jokeList.length}");
                   return Container(
                     height: height-250,
                       child: Padding(
@@ -63,9 +64,7 @@ class _HomePageState extends State<HomePage> {
                             final status = jokeData.status;
 
                             return ListCardContainer(
-                              id: id??"",
-                              joke: joke??"",
-                              status: status??"",
+                              index: index,
                             );
                           },
                         ),

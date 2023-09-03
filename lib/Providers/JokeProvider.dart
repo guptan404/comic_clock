@@ -21,10 +21,26 @@ class JokeProvider with ChangeNotifier {
      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
      String? jokeListString = sharedPreferences.getString("jokeList");
      String? jokeListFavString = sharedPreferences.getString("jokeListFav");
-     print("jokeListFav is $jokeListFavString");
+     print("jokeListFav is $jokeListString");
      if (jokeListString != null) {
        List<dynamic> jokeListJson = jsonDecode(jokeListString);
        jokeList = jokeListJson.map((e) => JokeModel.fromJson(e)).toList();
+       print("jokeList is $jokeList");
+       jokeList.forEach((element) {
+         Timer.periodic(const Duration(seconds: 1), (timer) {
+           element.time = element.time! - 1;
+           sharedPreferences.setString("jokeList", jsonEncode(jokeList));
+           if(element.time==0)
+           {
+             timer.cancel();
+             // jokeList.remove(element);
+             sharedPreferences.setString("jokeList", jsonEncode(jokeList));
+             getJokes(1);
+             notifyListeners();
+           }
+           notifyListeners();
+         });
+       });
      }
      else {
        print("else jokeList is null");
@@ -79,8 +95,10 @@ class JokeProvider with ChangeNotifier {
    Future<void> getJokes(int count)
    async {
      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+     int jokeTimer=count==1?600:60;
       for (int i = 0; i < count; i++) {
-        jokeService.getJoke().then((value) {
+        print("i is $i");
+        var value = await jokeService.getJoke();
           if(isAsc){
             jokeList.reversed.toList();
           }
@@ -88,14 +106,31 @@ class JokeProvider with ChangeNotifier {
           {
             jokeList.removeAt(9);
           }
-          jokeList.add(value);
+          value.time= jokeTimer;
+          print("value is ${value.toJson()}");
+          jokeTimer=jokeTimer+60;
+          Timer.periodic(const Duration(seconds: 1), (timer) {
+            value.time = value.time! - 1;
+            //update time on shared preferences
+            sharedPreferences.setString("jokeList", jsonEncode(jokeList));
+            if(value.time!<=0)
+            {
+              timer.cancel();
+              // jokeList.remove(value);
+              sharedPreferences.setString("jokeList", jsonEncode(jokeList));
+              getJokes(1);
+              notifyListeners();
+            }
+            notifyListeners();
+          });
+          //add joke to starting of the list
+          jokeList.insert(0, value);
           //update the shared preferences
           if(isAsc){
             jokeList.reversed.toList();
           }
           sharedPreferences.setString("jokeList", jsonEncode(jokeList));
           notifyListeners();
-        });
       }
    }
 
