@@ -1,5 +1,5 @@
 import 'package:comic_clock/Screens/splash.dart';
-import 'package:comic_clock/Widgets/BottomBar.dart';
+import 'package:comic_clock/Screens/BottomBar.dart';
 import 'package:comic_clock/Widgets/ListCardContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

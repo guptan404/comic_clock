@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../Utils/constants.dart';
 import '../Widgets/AppBar.dart';
+import '../Widgets/ListCardContainer.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = '/home';
@@ -15,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
 
       body: SafeArea(
@@ -25,8 +27,11 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-
+              SizedBox(height: 5,),
               CustomAppBar(context,''),
+              Container(
+                height: height-250,
+                  child: JokeListView2()),
             ],
           ),
         ),

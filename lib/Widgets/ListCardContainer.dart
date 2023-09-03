@@ -35,6 +35,7 @@ class ListCardContainer extends StatelessWidget {
         ),
         child: Column(
           children: [
+            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -42,14 +43,18 @@ class ListCardContainer extends StatelessWidget {
                   '00:00', // id
                   style: AppConstants.kText.copyWith(fontSize: 12), // Use your timer text style
                 ),
+                SizedBox(width: 10),
               ],
             ),
             Center(
-              child: Text(
-                joke,//joke
-                style: AppConstants.kText,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis, // Display ellipsis for long text
+              child: Padding(
+                padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                child: Text(
+                  joke,//joke
+                  style: AppConstants.kText,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis, // Display ellipsis for long text
+                ),
               ),
             ),
           ],
@@ -143,20 +148,23 @@ class JokeListView2 extends StatelessWidget {
     print("object is called");
     JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
     jokeProvider.getJokesFromSharedPrefrences();
-    return ListView.builder(
-      itemCount: jokeProvider.jokeList.length,
-      itemBuilder: (context, index) {
-        final jokeData = jokeProvider.jokeList[index];
-        final id = jokeData.id;
-        final joke = jokeData.joke;
-        final status = jokeData.status;
+    return Padding(
+      padding: const EdgeInsets.only(top:10,left: 10.0,right: 10.0),
+      child: ListView.builder(
+        itemCount: jokeProvider.jokeList.length,
+        itemBuilder: (context, index) {
+          final jokeData = jokeProvider.jokeList[index];
+          final id = jokeData.id;
+          final joke = jokeData.joke;
+          final status = jokeData.status;
 
-        return ListCardContainer(
-          id: id??"",
-          joke: joke??"",
-          status: status??"",
-        );
-      },
+          return ListCardContainer(
+            id: id??"",
+            joke: joke??"",
+            status: status??"",
+          );
+        },
+      ),
     );
   }
 }
