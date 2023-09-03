@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
            // onGenerateRoute: (settings) => generateRoute(settings),
           ),
-          home: BottomBar(),
+          home: Splash(),
         )
     );
   }
