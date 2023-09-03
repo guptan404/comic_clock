@@ -48,37 +48,57 @@ class _SplashState extends State<Splash> {
         width: 100,
       ),
       bottomSheet:
-      ClipPath(
-        clipper: Customshape(),
-        child: Container(
-          height: 150,
-          color: Color.fromRGBO(77, 218, 249, 0.42),
-            width: MediaQuery.of(context).size.width,
-            // decoration: const BoxDecoration(
-            //     borderRadius: BorderRadius.vertical(
-            //       top: Radius.circular(360),
-            //     ),
-            //     color: Colors.orange),
+      Stack(
+        children: [
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: ClipPath(
+              clipper: Customshape(),
+              child: Container(
+                height: 150,
+                color: Color.fromRGBO(77, 218, 249, 0.42),
+                  width: MediaQuery.of(context).size.width,
+                  // decoration: const BoxDecoration(
+                  //     borderRadius: BorderRadius.vertical(
+                  //       top: Radius.circular(360),
+                  //     ),
+                  //     color: Colors.orange),
+
+              ),
+               ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.home),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 150/5.3),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.home),
+                  ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.favorite),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 150/3),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.favorite),
+                  ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.settings),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 150/5.3),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.settings),
+                  ),
                 ),
               ],
             ),
-        ),
-         ),
+          ),
+        ],
+      ),
       );
   }
 }

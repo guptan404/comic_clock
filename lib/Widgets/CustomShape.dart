@@ -10,10 +10,8 @@ class Customshape extends CustomClipper<Path>{
     print("height: $height , width: $width ");
 
     var path = Path();
-    // path.moveTo(0, height);
     path.moveTo(0, height);
     path.quadraticBezierTo(width/2, 0, width, height);
-    path.lineTo(width, height);
     path.lineTo(0, height);
     return path;
   }
