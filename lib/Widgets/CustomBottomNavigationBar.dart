@@ -64,8 +64,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     padding: EdgeInsets.only(bottom: h/5.5),
                     child:
                     GradientIcon(
-                      Icons.home,
-                      45,
+                      AppIcons.home,
+                      50,
                       kAccentGradient,
                     ),
                   ),
@@ -77,20 +77,20 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     padding: EdgeInsets.only(bottom: h/3),
                     child: Image.asset(
                       winkEmojiImg, // Replace with your image asset
-                      width: 66,
-                      height: 66,
-                    ),
+                      width: 70,
+                      height: 70,
+                    )
                   ),
                 ),
                 Bouncing(
                   onPress: () => _handleTabSelected(2),
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: h/5.5),
-                    child: GradientIcon(
-                      Icons.person,
-                      45,
-                      kAccentGradient,
-                    ),
+                      padding: EdgeInsets.only(bottom: h/5.5),
+                      child: GradientIcon(
+                        AppIcons.profile,
+                        50,
+                        kAccentGradient,
+                      )
                   ),
                 ),
               ],

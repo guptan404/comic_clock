@@ -12,7 +12,7 @@ class JokeProvider with ChangeNotifier {
   Map<String,List<JokeModel>> jokeListFav = {"😀":[]};
 
   JokeService jokeService = JokeService();
-
+   bool isAsc=true;
 
   //get jokeList and jokeListFav from shared preferences
 
@@ -81,17 +81,37 @@ class JokeProvider with ChangeNotifier {
      SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
       for (int i = 0; i < count; i++) {
         jokeService.getJoke().then((value) {
+          if(isAsc){
+            jokeList.reversed.toList();
+          }
           if(jokeList.length == 10)
           {
             jokeList.removeAt(9);
           }
           jokeList.add(value);
           //update the shared preferences
+          if(isAsc){
+            jokeList.reversed.toList();
+          }
           sharedPreferences.setString("jokeList", jsonEncode(jokeList));
           notifyListeners();
         });
       }
    }
+
+  void sortingChange(bool value) {
+    if (value == true) {
+      jokeList.reversed.toList();
+      isAsc=false;
+      print(jokeList);
+      notifyListeners();
+    }
+    else {
+      isAsc=true;
+      notifyListeners();
+    }
+  }
 }
+
 
 

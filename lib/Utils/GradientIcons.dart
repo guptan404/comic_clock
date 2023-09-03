@@ -7,21 +7,18 @@ class GradientIcon extends StatelessWidget {
       this.gradient,
       );
 
-  final IconData icon;
+  final Icon icon;
   final double size;
   final Gradient gradient;
 
   @override
   Widget build(BuildContext context) {
     return ShaderMask(
+        blendMode: BlendMode.srcIn,
       child: SizedBox(
         width: size * 1.2,
         height: size * 1.2,
-        child: Icon(
-          icon,
-          size: size,
-          color: Colors.white,
-        ),
+        child: icon
       ),
       shaderCallback: (Rect bounds) {
         final Rect rect = Rect.fromLTRB(0, 0, size, size);

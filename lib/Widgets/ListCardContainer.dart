@@ -22,14 +22,15 @@ class ListCardContainer extends StatelessWidget {
       ),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.78,
-        height: 80,
+        height: 100,
         decoration: BoxDecoration(
+          color:kPrimaryColor,
           borderRadius: BorderRadius.circular(10.0),
           boxShadow: [
             BoxShadow(
               color: kAccentColor,
               offset: Offset(5, 5), // Shadow offset for bottom and right
-              blurRadius: 5,
+              //blurRadius: 5,
             ),
           ],
         ),
@@ -41,20 +42,21 @@ class ListCardContainer extends StatelessWidget {
               children: [
                 Text(
                   '00:00', // id
-                  style: AppConstants.kText.copyWith(fontSize: 12), // Use your timer text style
+                  style: AppConstants.kText.copyWith(fontSize: 14,color: kAccentColor), // Use your timer text style
                 ),
                 SizedBox(width: 10),
               ],
             ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                child: Text(
-                  joke,//joke
-                  style: AppConstants.kText,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis, // Display ellipsis for long text
-                ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              child: Text(
+                joke,//joke
+                style: AppConstants.kText.copyWith(fontSize: 16,color: kAccentColor),
+                textAlign: TextAlign.start,
+                //softWrap: true,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,// Display ellipsis for long text
               ),
             ),
           ],
