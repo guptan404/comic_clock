@@ -30,7 +30,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    double h=150;
+    double h=110;
     return Container(
       height: h,
       child: Stack(

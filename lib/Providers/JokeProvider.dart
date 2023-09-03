@@ -13,6 +13,7 @@ class JokeProvider with ChangeNotifier {
 
   JokeService jokeService = JokeService();
    bool isAsc=true;
+  int currentIndex = 0;
 
   //get jokeList and jokeListFav from shared preferences
 

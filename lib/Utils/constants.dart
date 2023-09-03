@@ -123,12 +123,12 @@ class AppIcons {
 
   static  Icon home = Icon(FontAwesome.house, size:40,weight:20,shadows: [Shadow(color: Colors.black,blurRadius: 5)]);
   static  Icon profile = Icon(FontAwesome.user_large, size:40,shadows: [Shadow(color: Colors.black,blurRadius: 5)]);
-  static  Icon save = Icon(FontAwesome.book_bookmark, size:34,color: kPrimaryColor,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
-  static  Icon unsaved = Icon(FontAwesome.bookmark, size:33,color: kPrimaryColor,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
-  static  Icon share = Icon(FontAwesome.share_nodes, size:28,color: kPrimaryColor,shadows: [Shadow(color: Colors.black,blurRadius: 5)]);
-  static  Icon voice = Icon(FontAwesome.microphone_lines, size:28,color: kPrimaryColor,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
-  static  Icon leftArrow = Icon(FontAwesome.circle_chevron_left, size:36,color: kSecondaryColor,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
-  static  Icon rightArrow = Icon(FontAwesome.circle_chevron_right, size:36,color: kSecondaryColor,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
+  static  Icon save = Icon(FontAwesome.book_bookmark, size:34,color: kPrimaryColor,);
+  static  Icon unsaved = Icon(FontAwesome.bookmark, size:33,color: kPrimaryColor,);
+  static  Icon share = Icon(FontAwesome.share_nodes, size:28,color: kPrimaryColor,);
+  static  Icon voice = Icon(FontAwesome.microphone_lines, size:28,color: kPrimaryColor,);
+  static  Icon leftArrow = Icon(FontAwesome.circle_chevron_left, size:36,color: kSecondaryColor,shadows: [Shadow(color: Colors.grey.withOpacity(0.3), blurRadius: 5)]);
+  static  Icon rightArrow = Icon(FontAwesome.circle_chevron_right, size:36,color: kSecondaryColor,shadows: [Shadow(color:Colors.grey.withOpacity(0.3), blurRadius: 5)]);
   static  Icon sortAcc = Icon(FontAwesome.arrow_up_short_wide, size:35,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
   static  Icon sortDes = Icon(FontAwesome.arrow_down_wide_short, size:35,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
   static  Icon add = Icon(FontAwesome.plus, size:35,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);

@@ -1,3 +1,4 @@
+import 'package:comic_clock/Screens/JokeCards.dart';
 import 'package:delayed_widget/delayed_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +33,8 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    // JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
-    // jokeProvider.getJokesFromSharedPrefrences();
+    JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
+    jokeProvider.getJokesFromSharedPrefrences();
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
 
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 40,),
+            SizedBox(height: 45,),
             CustomAppBar(context,'',false,true),
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
@@ -63,9 +64,15 @@ class _HomePageState extends State<HomePage> {
                             final joke = jokeData.joke;
                             final status = jokeData.status;
 
-                            return ListCardContainer(
-                              index: index,
+                            return GestureDetector(
+                              onTap: (){
+                                jokeProvider.currentIndex=index;
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => JokeCard(isFav: false,)));},
+                              child: ListCardContainer(
+                               index: index,
+                              )
                             );
+
                           },
                         ),
                       ),);

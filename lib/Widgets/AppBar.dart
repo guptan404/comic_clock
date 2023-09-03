@@ -31,7 +31,7 @@ Widget CustomAppBar(BuildContext context,String type,bool backVisible,bool sortV
                       borderRadius: BorderRadius.circular(5.0),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
+                          color: Colors.grey.withOpacity(0.5),
                           //spreadRadius: 5,
                           blurRadius: 5,
                           offset: Offset(5, 5), // Adjust the shadow offset
