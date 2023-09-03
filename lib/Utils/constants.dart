@@ -27,8 +27,8 @@ LinearGradient kBgGradient = LinearGradient(
 
 LinearGradient kAccentGradient = LinearGradient(
   colors: [
-    kSecondaryColor,
-    kPrimaryColor
+    kAccentColor2,
+    kAccentColor3
   ],
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
@@ -120,8 +120,8 @@ String pleadEmoImg="assets/pleadEmoji.png";
 class AppIcons {
 
 
-  static  Icon home = Icon(FontAwesome.house, size:34,);
-  static  Icon profile = Icon(FontAwesome.user, size:34,);
+  static  Icon home = Icon(FontAwesome.house, size:30,);
+  static  Icon profile = Icon(FontAwesome.user_large, size:30,);
   static  Icon save = Icon(FontAwesome.book_bookmark, size:34,color: kPrimaryColor,);
   static  Icon unsaved = Icon(FontAwesome.bookmark, size:33,color: kPrimaryColor,);
   static  Icon share = Icon(FontAwesome.share_nodes, size:28,color: kPrimaryColor,);
@@ -131,7 +131,7 @@ class AppIcons {
   static  Icon sortAcc = Icon(FontAwesome.arrow_up_short_wide, size:35,);
   static  Icon sortDes = Icon(FontAwesome.arrow_down_wide_short, size:35);
   static  Icon add = Icon(FontAwesome.plus, size:35);
-
+  static  Icon back = Icon(FontAwesome.arrow_left, size:35,);
 
 }
 
