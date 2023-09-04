@@ -14,7 +14,7 @@ class JokeService {
 
     if (response.statusCode == 200) {
       var body=await response.stream.bytesToString();
-      print(body);
+      print("body:$body");
       return JokeModel.fromJson(json.decode(body));
     }
     else {

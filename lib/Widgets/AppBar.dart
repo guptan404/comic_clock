@@ -75,8 +75,10 @@ Widget CustomAppBar(BuildContext context,bool backVisible,bool sortVIsible) {
                 visible: sortVIsible,
                 child: GestureDetector(
                   onTap: (){
-                    jokeProvider.isAsc=!jokeProvider.isAsc;
-                    jokeProvider.sortingChange(jokeProvider.isAsc);
+
+                    jokeProvider.isAsc=(!jokeProvider.isAsc);
+                    print(jokeProvider.isAsc);
+                    jokeProvider.reverseList();
 
                   },
                   child: Container(

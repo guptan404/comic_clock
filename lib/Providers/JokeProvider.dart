@@ -9,7 +9,7 @@ import '../Model/JokeModel.dart';
 
 class JokeProvider with ChangeNotifier {
   List<JokeModel> jokeList = [];
-  Map<String,List<JokeModel>> jokeListFav = {"😀":[]};
+  Map<String,List<JokeModel>> jokeListFav = {"😀 All":[]};
 
   JokeService jokeService = JokeService();
    bool isAsc=true;
@@ -135,17 +135,9 @@ class JokeProvider with ChangeNotifier {
       }
    }
 
-  void sortingChange(bool value) {
-    if (value == true) {
-      jokeList.reversed.toList();
-      isAsc=false;
-      print(jokeList);
-      notifyListeners();
-    }
-    else {
-      isAsc=true;
-      notifyListeners();
-    }
+  void reverseList() {
+    jokeList = jokeList.reversed.toList();
+    notifyListeners();
   }
 }
 

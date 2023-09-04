@@ -132,7 +132,7 @@ class AppIcons {
   static  Icon rightArrow = Icon(FontAwesome.circle_chevron_right, size:36,color: kSecondaryColor,shadows: [Shadow(color:Colors.grey.withOpacity(0.3), blurRadius: 5)]);
   static  Icon sortAcc = Icon(FontAwesome.arrow_up_short_wide, size:35,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
   static  Icon sortDes = Icon(FontAwesome.arrow_down_wide_short, size:35,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
-  static  Icon add = Icon(FontAwesome.plus, size:35,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
+  static  Icon add = Icon(FontAwesome.plus, size:28,shadows: [Shadow(color: Colors.black,)]);
   static  Icon back = Icon(FontAwesome.arrow_left, size:35,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
 
 }
