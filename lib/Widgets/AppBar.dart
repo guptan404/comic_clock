@@ -14,36 +14,40 @@ Widget CustomAppBar(BuildContext context,bool backVisible,bool sortVIsible) {
     return Consumer<JokeProvider>(
       builder: (_,jokeProvider,__) {
         return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Visibility(
-                visible: backVisible,
-                child: GestureDetector(
-                  onTap: (){
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Visibility(
+                  replacement: SizedBox.fromSize(child: Container(width: 50,),),
+                  visible: backVisible,
+                  child: GestureDetector(
+                    onTap: (){
 
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    width: 50.0,
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      color: kPrimaryColor, // Replace with your primary color
-                      borderRadius: BorderRadius.circular(15.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          //spreadRadius: 5,
-                          blurRadius: 5,
-                          offset: Offset(5, 5), // Adjust the shadow offset
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child:  GradientIcon(
-                        AppIcons.back,
-                        50,
-                        kAccentGradient,
-                      )
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: 50.0,
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                        color: kPrimaryColor, // Replace with your primary color
+                        borderRadius: BorderRadius.circular(15.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            //spreadRadius: 5,
+                            blurRadius: 5,
+                            offset: Offset(5, 5), // Adjust the shadow offset
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child:  GradientIcon(
+                          AppIcons.back,
+                          50,
+                          kAccentGradient,
+                        )
+                      ),
                     ),
                   ),
                 ),
@@ -71,41 +75,45 @@ Widget CustomAppBar(BuildContext context,bool backVisible,bool sortVIsible) {
                   )
                 ),
               ),
-              Visibility(
-                visible: sortVIsible,
-                child: GestureDetector(
-                  onTap: (){
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Visibility(
+                  replacement: SizedBox.fromSize(child: Container(width: 50,),),
+                  visible: sortVIsible,
+                  child: GestureDetector(
+                    onTap: (){
 
-                    jokeProvider.isAsc=(!jokeProvider.isAsc);
-                    print(jokeProvider.isAsc);
-                    jokeProvider.reverseList();
+                      jokeProvider.isAsc=(!jokeProvider.isAsc);
+                      print(jokeProvider.isAsc);
+                      jokeProvider.reverseList();
 
-                  },
-                  child: Container(
-                    width: 50.0,
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      color: kPrimaryColor, // Replace with your primary color
-                      borderRadius: BorderRadius.circular(15.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          //spreadRadius: 5,
-                          blurRadius: 5,
-                          offset: Offset(5, 5), // Adjust the shadow offset
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: jokeProvider.isAsc? GradientIcon(
-                        AppIcons.sortAcc,
-                        50,
-                        kAccentGradient,
-                      ):GradientIcon(
-                        AppIcons.sortDes,
-                        50,
-                        kAccentGradient,
-                      )
+                    },
+                    child: Container(
+                      width: 50.0,
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                        color: kPrimaryColor, // Replace with your primary color
+                        borderRadius: BorderRadius.circular(15.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            //spreadRadius: 5,
+                            blurRadius: 5,
+                            offset: Offset(5, 5), // Adjust the shadow offset
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: jokeProvider.isAsc? GradientIcon(
+                          AppIcons.sortAcc,
+                          50,
+                          kAccentGradient,
+                        ):GradientIcon(
+                          AppIcons.sortDes,
+                          50,
+                          kAccentGradient,
+                        )
+                      ),
                     ),
                   ),
                 ),

@@ -16,6 +16,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   String cf = AppConstants.fonts.keys.first;
   var currentFont = AppConstants.rocknRollOne;
+  String _selectedTheme = 'cartoon';
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(height: 45,),
               CustomAppBar(context, false, false),
@@ -85,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               SizedBox(height: 45,),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.95,
                   height: 150,
@@ -94,48 +96,53 @@ class _ProfilePageState extends State<ProfilePage> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                             'Theme',
-                            style: AppConstants.kText.copyWith(color: kSecondaryColor),
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Theme',
+                          style: AppConstants.kText.copyWith(color: kSecondaryColor),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Radio(
+                            value: 'cartoon',
+                            groupValue: _selectedTheme, // Use a variable to track the selected theme
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedTheme = value!; // Update the selected theme to "cartoon"
+                              });
+                            },
+                            activeColor: kSecondaryColor,
+                            focusColor: kSecondaryColor,
                           ),
-                    ),
-                    Row(
-                      children: [
-                        Radio(
-                          value: 'cartoon',
-                          groupValue: 'theme',
-                          onChanged: (value) {
-                            // Handle the theme selection (cartoon) here
-                          },
-                          activeColor: kSecondaryColor,
-                          focusColor:kSecondaryColor ,
-                        ),
-                        Text('Cartoon', style: AppConstants.kText.copyWith(color: kdarkTextColor,fontSize: 16)),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Radio(
-                          value: 'comic',
-                          groupValue: 'theme',
-                          onChanged: (value) {
-                            // Handle the theme selection (comic) here
-                          },
-                          activeColor: kSecondaryColor,
-                          focusColor:kSecondaryColor ,
-                        ),
-                        Text('Comic', style: AppConstants.kText.copyWith(color: kdarkTextColor,fontSize: 16)),
-
-                      ],
-                    ),
-                  ],
+                          Text('Cartoon', style: AppConstants.kText.copyWith(color: kdarkTextColor, fontSize: 16)),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Radio(
+                            value: 'comic',
+                            groupValue: _selectedTheme, // Use the same variable to track the selected theme
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedTheme = value!; // Update the selected theme to "comic"
+                              });
+                            },
+                            activeColor: kSecondaryColor,
+                            focusColor: kSecondaryColor,
+                          ),
+                          Text('Comic', style: AppConstants.kText.copyWith(color: kdarkTextColor, fontSize: 16)),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-    ),
               ),
+
               SizedBox(height: 15,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -157,29 +164,49 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       //Create a viewpoer to display Font Changes
-                      DropdownButton<String>(
-                        value: cf, // Set the initial selected value
-                        onChanged: (value) {
-                          // Handle font selection here
-                          AppConstants.fonts.forEach((key, value) {
-                            if (value == cf) {
-                              setState(() {
-                                currentFont = value;
-                              });
-                            }
-                          });
-                        },
-                        items: [
-                          for(var font in AppConstants.fonts.keys)
-                            DropdownMenuItem(
-                              value: font,
-                              child: Text(
-                                font,
-                                style: AppConstants.fonts[font]!.copyWith(color: kdarkTextColor),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: DropdownButton<String>(
+                         // border: Border.all(color: Colors.grey), // Add border decoration
+                          borderRadius: BorderRadius.circular(8.0),
+                          isExpanded: true, // Reduces the height of the dropdown
+                          value: cf, // Set the initial selected value
+                          onChanged: (value) {
+                            // Handle font selection here
+                            AppConstants.fonts.forEach((key, value) {
+                              if (value == cf) {
+                                setState(() {
+                                  currentFont = value;
+                                });
+                              }
+                            });
+                          },
+                          items: [
+                            for (var font in AppConstants.fonts.keys)
+                              DropdownMenuItem(
+                                value: font,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0), // Add padding as needed
+                                  child: Container(
+
+                                    decoration: BoxDecoration(
+                                      gradient: kAccentGradient,
+                                      //border: Border.all(color: Colors.grey), // Add border decoration
+                                      borderRadius: BorderRadius.circular(8.0), // Adjust the border radius
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        font,
+                                        style: AppConstants.fonts[font]!.copyWith(color: kdarkTextColor),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
+
                       Center(
                         child: Card(
                           elevation: 5,

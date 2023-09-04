@@ -132,8 +132,8 @@ class AppIcons {
 
   static  Icon home = Icon(FontAwesome.house, size:40,weight:20,shadows: [Shadow(color: Colors.black,blurRadius: 5)]);
   static  Icon profile = Icon(FontAwesome.user_large, size:40,shadows: [Shadow(color: Colors.black,blurRadius: 5)]);
-  static  Icon save = Icon(FontAwesome.book_bookmark, size:34,color: kPrimaryColor,);
-  static  Icon unsaved = Icon(FontAwesome.bookmark, size:33,color: kPrimaryColor,);
+  static  Icon save = Icon(Icons.bookmark, size:34,color: kPrimaryColor,);
+  static  Icon unsaved = Icon(Icons.bookmark_border_rounded, size:33,color: kPrimaryColor,);
   static  Icon share = Icon(FontAwesome.share_nodes, size:28,color: kPrimaryColor,);
   static  Icon voice = Icon(FontAwesome.microphone_lines, size:28,color: kPrimaryColor,);
   static  Icon leftArrow = Icon(FontAwesome.circle_chevron_left, size:36,color: kSecondaryColor,shadows: [Shadow(color: Colors.grey.withOpacity(0.3), blurRadius: 5)]);

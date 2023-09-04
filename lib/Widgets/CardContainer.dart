@@ -1,10 +1,13 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 
+import '../Model/JokeModel.dart';
 import '../Providers/JokeProvider.dart';
 import '../Utils/constants.dart';
 
@@ -20,10 +23,21 @@ import '../Utils/constants.dart';
 WidgetsToImageController controller = WidgetsToImageController();
 // to save image bytes of widget
 Uint8List? bytes;
-  Widget CardContainer(BuildContext context,int index,String joke,bool isFav) {
+  Widget CardContainer(BuildContext context,int index,JokeModel joke,bool isFav) {
+    String findKeyForJoke(Map<String, List<JokeModel>> jokeListFav, JokeModel jokeToFind) {
+      for (var entry in jokeListFav.entries) {
+        if (entry.value.contains(jokeToFind)) {
+          return entry.key;
+        }
+      }
+      return ''; // Return an empty string if not found
+    }
+
+
 
     return Consumer<JokeProvider>(
         builder: (_,jokeProvider, __)  {
+          List<JokeModel> favList=jokeProvider.extractAllJokes();
         return WidgetsToImage(
           controller: controller,
           child: Container(
@@ -50,31 +64,48 @@ Uint8List? bytes;
                     children: [
                       //Spacer(),
 
-                      Center(
-                        child: Visibility(
-                          visible:!isFav,//not if status is true
-                          child:Text(
-                            "Time Left: "+jokeProvider.jokeList[index].time.toString(), // id
-                            style: AppConstants.kText, // id
-                            // Use your timer text style
-                          ),
+                    Center(
+                      child: Visibility(
+                        visible:!((joke.isFavourite??false)||favList.contains(joke)),//not if status is true
+                        child:Text(
+                          "Time Left: "+jokeProvider.jokeList[index].time.toString(), // id
+                          style: AppConstants.kText, // id
+                          // Use your timer text style
                         ),
                       ),
-                      SizedBox(width: 55,),
-                      GestureDetector(
-                        onTap: (){},
-                        child: AppIcons.unsaved,
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(width: 30,),
+                    GestureDetector(
+                      onTap: (){
+                        if(((joke.isFavourite??false)||favList.contains(joke)))
+                            //remove a joke
+                         {
+                           jokeProvider.removeJokeFromFav(joke, findKeyForJoke(jokeProvider.jokeListFav, joke));
+                        Fluttertoast.showToast(
+                          msg: 'Removed from Favorites',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          backgroundColor: kAccentColor,
+                          textColor: Colors.white,
+                        );
+                         }
+                        else{
+                        jokeProvider.toggleEmojiListVisibility();
+                        }
+                      },
+                      child: ((joke.isFavourite??false)||favList.contains(joke)) ? AppIcons.save : AppIcons.unsaved,
+
+                    ),
+                  ],
                 ),
+              ),
 
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                       joke,
+                       joke.joke??'',
                       style: AppConstants.kText,
                       textAlign: TextAlign.start,
                     ),
@@ -88,14 +119,14 @@ Uint8List? bytes;
 
                       GestureDetector(
                         onTap: () async {
-                          _onShare(context,joke);
+                          _onShare(context,joke.joke??'');
                         },
                         child: AppIcons.share,
                       ),
                       GestureDetector(
                         onTap: (){
                           TextToSpeech textToSpeech = TextToSpeech();
-                          textToSpeech.speak(joke);
+                          textToSpeech.speak(joke.joke??'');
                         },
                         child: AppIcons.voice,
                       ),

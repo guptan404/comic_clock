@@ -82,16 +82,15 @@ class _HomePageState extends State<HomePage> {
                             itemCount: jokeProvider.jokeList.length,
                             itemBuilder: (context, index) {
                               final jokeData = jokeProvider.jokeList[index];
-                              final id = jokeData.id;
-                              final joke = jokeData.joke;
-                              final status = jokeData.status;
 
                               return GestureDetector(
                                 onTap: (){
                                   jokeProvider.currentIndex=index;
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => JokeCard(isFav: false,)));},
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => JokeCard(jokeModel:jokeProvider.jokeList[index],isFav: false,)));},
                                 child: ListCardContainer(
+                                  jokeModel: jokeData,
                                  index: index,
+                                  isFav: false,
                                 )
                               );
 
@@ -101,94 +100,7 @@ class _HomePageState extends State<HomePage> {
                   }
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Visibility(
-                  visible: _visible,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      DelayedWidget(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                            ],
-                          ),
-                          delayDuration: Duration(milliseconds: 200),// Not required
-                          animationDuration: Duration(seconds: 1),// Not required
-                          animation: DelayedAnimations.SLIDE_FROM_BOTTOM
-                      ),
-                      DelayedWidget(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                            ],
-                          ),
-                          delayDuration: Duration(milliseconds: 200),// Not required
-                          animationDuration: Duration(seconds: 1),// Not required
-                          animation: DelayedAnimations.SLIDE_FROM_BOTTOM
-                      ),
-                      DelayedWidget(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                            ],
-                          ),
-                          delayDuration: Duration(milliseconds: 200),// Not required
-                          animationDuration: Duration(seconds: 1),// Not required
-                          animation: DelayedAnimations.SLIDE_FROM_BOTTOM
-                      ),
 
-                      DelayedWidget(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                              Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                            ],
-                          ),
-                          delayDuration: Duration(milliseconds: 1200),// Not required
-                          animationDuration: Duration(seconds: 1),// Not required
-                          animation: DelayedAnimations.SLIDE_FROM_BOTTOM
-                      ),
-
-                      DelayedWidget(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset("assets/laugh.gif",height: 100,width: 100,),
-                              Image.asset("assets/laugh2.gif",height: 100,width: 100,),
-                              Image.asset("assets/laugh.gif",height: 100,width: 100,),
-                              Image.asset("assets/laugh2.gif",height: 100,width: 100,),
-                            ],
-                          ),
-                          delayDuration: Duration(milliseconds: 2400),// Not required
-                          animationDuration: Duration(seconds: 1),// Not required
-                          animation: DelayedAnimations.SLIDE_FROM_BOTTOM
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             ],
           ),
         ),

@@ -44,6 +44,7 @@ dependencies:
   delayed_widget: ^1.1.2
   text_to_speech: ^0.2.3
   share_plus: ^7.1.0
+  fluttertoast: ^8.0.7
   widgets_to_image: ^0.0.2
 
 dev_dependencies:

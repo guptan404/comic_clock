@@ -9,13 +9,32 @@ import '../Model/JokeModel.dart';
 
 class JokeProvider with ChangeNotifier {
   List<JokeModel> jokeList = [];
-  Map<String,List<JokeModel>> jokeListFav = {"😀 All":[]};
+  Map<String, List<JokeModel>> jokeListFav = {"😀 All": []};
 
   JokeService jokeService = JokeService();
-   bool isAsc=true;
+  bool isAsc = true;
   int currentIndex = 0;
 
+  bool _isEmojiListVisible = false;
+
+  bool get isEmojiListVisible => _isEmojiListVisible;
+
+  void toggleEmojiListVisibility() {
+    _isEmojiListVisible = !_isEmojiListVisible;
+    notifyListeners();
+  }
+
+  List<JokeModel> extractAllJokes() {
+    List<JokeModel> allJokes = [];
+    jokeListFav.forEach((emojiTag, jokeList) {
+      allJokes.addAll(jokeList);
+    });
+
+    return allJokes;
+  }
+
   //get jokeList and jokeListFav from shared preferences
+
 
    Future<void> getJokesFromSharedPrefrences() async {
      print("getJokesFromSharedPrefrences is called");

@@ -1,5 +1,6 @@
 
 
+import 'package:comic_clock/Model/JokeModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,8 +9,10 @@ import '../Utils/constants.dart';
 
 class ListCardContainer extends StatelessWidget {
   int index;
+  JokeModel jokeModel;
+  bool isFav;
 
-  ListCardContainer({required this.index});
+  ListCardContainer({required this.index,required this.isFav,required this.jokeModel});
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +43,12 @@ class ListCardContainer extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      "Time Left: "+jokeProvider.jokeList[index].time.toString(), // id
-                      style: AppConstants.kText.copyWith(fontSize: 14,color: kAccentColor), // Use your timer text style
+                    Visibility(
+                      visible: !isFav,
+                      child: Text(
+                        "Time Left: "+jokeModel.time.toString(), // id
+                        style: AppConstants.kText.copyWith(fontSize: 14,color: kAccentColor), // Use your timer text style
+                      ),
                     ),
                     SizedBox(width: 10),
                   ],
@@ -51,7 +57,7 @@ class ListCardContainer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   child: Text(
-                    jokeProvider.jokeList[index].joke??"",//joke
+                    jokeModel.joke??'',//joke
                     style: AppConstants.kText.copyWith(fontSize: 16,color: kAccentColor),
                     textAlign: TextAlign.start,
                     //softWrap: true,
@@ -70,111 +76,6 @@ class ListCardContainer extends StatelessWidget {
 
 //fav joke
 
-class JokeListView extends StatefulWidget {
-  @override
-  _JokeListViewState createState() => _JokeListViewState();
-}
-
-class _JokeListViewState extends State<JokeListView> {
-  String selectedEmoji = '😀';
-
-  @override
-  Widget build(BuildContext context) {
-    JokeProvider jokeProvider = Provider.of<JokeProvider>(context);
-    final emojiTags = [
-      '😀',
-      '🤣',
-      '😄',
-    ];
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: emojiTags.map((emoji) {
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedEmoji = emoji;
-                });
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: kPrimaryColor
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      emoji,
-                      style: TextStyle(fontSize: 30),
-                    ),
-                    Visibility(
-                      visible: selectedEmoji == emoji,
-                      child: Text(
-                        'emoji', // Emoji name
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          }).toList(),
-        ),
-        // Divider(),
-        Container(
-          height:  MediaQuery.of(context).size.height * 0.56,
-          child: ListView.builder(
-            itemCount: jokeProvider.jokeListFav[selectedEmoji]?.length ?? 0,
-            itemBuilder: (context, index) {
-              final favJoke = jokeProvider.jokeListFav[selectedEmoji]?[index].joke ?? '';
-
-              return ListTile(
-                title: Text(favJoke),
-                subtitle: Visibility(
-                  visible: selectedEmoji == emojiTags[index],
-                  child: Text(emojiTags[index]), // Display the selected emoji name
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class JokeListView2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    print("object is called");
-    JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
-    // jokeProvider.getJokesFromSharedPrefrences();
-    return Padding(
-      padding: const EdgeInsets.only(top:10,left: 10.0,right: 10.0),
-      child: ListView.builder(
-        itemCount: jokeProvider.jokeList.length,
-        itemBuilder: (context, index) {
-          final jokeData = jokeProvider.jokeList[index];
-          final id = jokeData.id;
-          final joke = jokeData.joke;
-          final status = jokeData.status;
-
-          return InkWell(
-            onTap: (){
-              jokeProvider.addJokeToFav(jokeData, "😀");
-            },
-            child: ListCardContainer(
-              index: index,
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
 
 
 
