@@ -14,7 +14,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
 
-  String cf = AppConstants.fontNames[0];
+  String cf = AppConstants.fonts.keys.first;
   var currentFont = AppConstants.rocknRollOne;
 
   @override
@@ -161,78 +161,23 @@ class _ProfilePageState extends State<ProfilePage> {
                         value: cf, // Set the initial selected value
                         onChanged: (value) {
                           // Handle font selection here
-                          if(value == AppConstants.fontNames[0])
-                            {
-                              cf=AppConstants.fontNames[0];
+                          AppConstants.fonts.forEach((key, value) {
+                            if (value == cf) {
                               setState(() {
-                                currentFont = AppConstants.rocknRollOne;
+                                currentFont = value;
                               });
                             }
-                          else if(value == AppConstants.fontNames[1])
-                          {
-                            cf=AppConstants.fontNames[1];
-                            setState(() {
-                              currentFont = AppConstants.quando;
-                            });
-                          }
-                          else if(value == AppConstants.fontNames[2])
-                          {
-                            cf=AppConstants.fontNames[2];
-                            setState(() {
-                              currentFont = AppConstants.quando2;
-                            });
-                          }
-                          else if(value == AppConstants.fontNames[3])
-                          {
-                            cf=AppConstants.fontNames[3];
-                            setState(() {
-                              currentFont = AppConstants.russoOne;
-                            });
-                          }
-                          else if(value == AppConstants.fontNames[4])
-                          {
-                            cf=AppConstants.fontNames[4];
-                            setState(() {
-                              currentFont = AppConstants.novaCut;
-                            });
-                          }
+                          });
                         },
                         items: [
-                          DropdownMenuItem(
-                            value: AppConstants.fontNames[0],
-                            child: Text(
-                              AppConstants.fontNames[0],
-                              style: AppConstants.rocknRollOne.copyWith(color: kdarkTextColor),
+                          for(var font in AppConstants.fonts.keys)
+                            DropdownMenuItem(
+                              value: font,
+                              child: Text(
+                                font,
+                                style: AppConstants.fonts[font]!.copyWith(color: kdarkTextColor),
+                              ),
                             ),
-                          ),
-                          DropdownMenuItem(
-                            value: AppConstants.fontNames[1],
-                            child: Text(
-                              AppConstants.fontNames[1],
-                              style: AppConstants.quando.copyWith(color: kdarkTextColor),
-                            ),
-                          ),
-                          DropdownMenuItem(
-                            value: AppConstants.fontNames[2],
-                            child: Text(
-                              AppConstants.fontNames[2],
-                              style: AppConstants.quando2.copyWith(color: kdarkTextColor),
-                            ),
-                          ),
-                          DropdownMenuItem(
-                            value: AppConstants.fontNames[3],
-                            child: Text(
-                              AppConstants.fontNames[3],
-                              style: AppConstants.russoOne.copyWith(color: kdarkTextColor),
-                            ),
-                          ),
-                          DropdownMenuItem(
-                            value: AppConstants.fontNames[4],
-                            child: Text(
-                              AppConstants.fontNames[4],
-                              style: AppConstants.novaCut.copyWith(color: kdarkTextColor),
-                            ),
-                          ),
                         ],
                       ),
                       Center(
