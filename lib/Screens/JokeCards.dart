@@ -13,6 +13,7 @@ import '../Providers/JokeProvider.dart';
 import '../Utils/constants.dart';
 import '../Widgets/AppBar.dart';
 import '../Widgets/CardContainer.dart';
+import '../Widgets/EmojiContainer.dart';
 import '../Widgets/ListCardContainer.dart';
 
 class JokeCard extends StatefulWidget {
@@ -91,6 +92,7 @@ class _JokeCardState extends State<JokeCard> {
                     ),
                     child: Stack(
                       children: [
+                        EmojiContainer(context, 'random',''),
                         Column(
                           children: [
                             SizedBox(height: 45,),
