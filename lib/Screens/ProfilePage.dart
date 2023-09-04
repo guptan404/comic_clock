@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Utils/constants.dart';
 import '../Widgets/AppBar.dart';
+import '../Widgets/ListCardContainer.dart';
 
 class ProfilePage extends StatefulWidget {
   static const String routeName = '/profile';
@@ -12,6 +13,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  String cf = AppConstants.fontNames[0];
+  var currentFont = AppConstants.rocknRollOne;
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.95,
-                  height: 100,
+                  height: 210,
                   decoration: BoxDecoration(
                     color: kPrimaryColor,
                     borderRadius: BorderRadius.circular(10),
@@ -152,33 +156,122 @@ class _ProfilePageState extends State<ProfilePage> {
                           style: AppConstants.kText.copyWith(color: kSecondaryColor),
                         ),
                       ),
+                      //Create a viewpoer to display Font Changes
                       DropdownButton<String>(
-                        value: 'option1', // Set the initial selected value
+                        value: cf, // Set the initial selected value
                         onChanged: (value) {
                           // Handle font selection here
+                          if(value == AppConstants.fontNames[0])
+                            {
+                              cf=AppConstants.fontNames[0];
+                              setState(() {
+                                currentFont = AppConstants.rocknRollOne;
+                              });
+                            }
+                          else if(value == AppConstants.fontNames[1])
+                          {
+                            cf=AppConstants.fontNames[1];
+                            setState(() {
+                              currentFont = AppConstants.quando;
+                            });
+                          }
+                          else if(value == AppConstants.fontNames[2])
+                          {
+                            cf=AppConstants.fontNames[2];
+                            setState(() {
+                              currentFont = AppConstants.quando2;
+                            });
+                          }
+                          else if(value == AppConstants.fontNames[3])
+                          {
+                            cf=AppConstants.fontNames[3];
+                            setState(() {
+                              currentFont = AppConstants.russoOne;
+                            });
+                          }
+                          else if(value == AppConstants.fontNames[4])
+                          {
+                            cf=AppConstants.fontNames[4];
+                            setState(() {
+                              currentFont = AppConstants.novaCut;
+                            });
+                          }
                         },
                         items: [
                           DropdownMenuItem(
-                            value: 'option1',
-                            child: Text('Option 1', style: AppConstants.kText.copyWith(color: kdarkTextColor)),
+                            value: AppConstants.fontNames[0],
+                            child: Text(
+                              AppConstants.fontNames[0],
+                              style: AppConstants.rocknRollOne.copyWith(color: kdarkTextColor),
+                            ),
                           ),
                           DropdownMenuItem(
-                            value: 'option2',
-                            child: Text('Option 2', style: AppConstants.kText.copyWith(color: kdarkTextColor)),
+                            value: AppConstants.fontNames[1],
+                            child: Text(
+                              AppConstants.fontNames[1],
+                              style: AppConstants.quando.copyWith(color: kdarkTextColor),
+                            ),
                           ),
                           DropdownMenuItem(
-                            value: 'option3',
-                            child: Text('Option 3', style: AppConstants.kText.copyWith(color: kdarkTextColor)),
+                            value: AppConstants.fontNames[2],
+                            child: Text(
+                              AppConstants.fontNames[2],
+                              style: AppConstants.quando2.copyWith(color: kdarkTextColor),
+                            ),
                           ),
                           DropdownMenuItem(
-                            value: 'option4',
-                            child: Text('Option 4', style: AppConstants.kText.copyWith(color: kdarkTextColor)),
+                            value: AppConstants.fontNames[3],
+                            child: Text(
+                              AppConstants.fontNames[3],
+                              style: AppConstants.russoOne.copyWith(color: kdarkTextColor),
+                            ),
                           ),
                           DropdownMenuItem(
-                            value: 'option5',
-                            child: Text('Option 5', style: AppConstants.kText.copyWith(color: kdarkTextColor)),
+                            value: AppConstants.fontNames[4],
+                            child: Text(
+                              AppConstants.fontNames[4],
+                              style: AppConstants.novaCut.copyWith(color: kdarkTextColor),
+                            ),
                           ),
                         ],
+                      ),
+                      Center(
+                        child: Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.78,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color:kPrimaryColor,
+                              borderRadius: BorderRadius.circular(10.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: kAccentColor,
+                                  offset: Offset(5, 5), // Shadow offset for bottom and right
+                                  //blurRadius: 5,
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                                  child: Text(
+                                    "Black holes are where God divided by zero.",//joke
+                                    style: currentFont.copyWith(fontSize: 16,color: kAccentColor),
+                                    textAlign: TextAlign.start,
+                                    //softWrap: true,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,// Display ellipsis for long text
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),

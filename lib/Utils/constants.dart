@@ -48,6 +48,14 @@ LinearGradient kCardGradient = LinearGradient(
 
 
 class AppConstants {
+
+  static List<String> fontNames = [
+    'Rockn Roll One',
+    'Quando',
+    'Quando2',
+    'Russo One',
+    'Nova Cut',
+  ];
   // Fonts
   static TextStyle kProfileText = GoogleFonts.sirinStencil(
       fontSize: 24,
