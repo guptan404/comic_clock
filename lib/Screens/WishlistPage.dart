@@ -18,9 +18,9 @@ class WishlistPage extends StatefulWidget {
 class _WishlistPageState extends State<WishlistPage> {
   @override
   Widget build(BuildContext context) {
-    JokeProvider jokeProvider =
-        Provider.of<JokeProvider>(context, listen: false);
-    jokeProvider.getJokesFromSharedPrefrences();
+    // JokeProvider jokeProvider =
+    //     Provider.of<JokeProvider>(context, listen: false);
+    // jokeProvider.getJokesFromSharedPrefrences();
     final height = MediaQuery.of(context).size.height;
     final emojiTags = [
       '😀',

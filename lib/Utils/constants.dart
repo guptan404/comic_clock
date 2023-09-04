@@ -63,35 +63,35 @@ class AppConstants {
     //color: Colors.black, // Adjust text color as needed
   );
 
-  static TextStyle kText2 = GoogleFonts.rocknRollOne(
+  static TextStyle rocknRollOne = GoogleFonts.rocknRollOne(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: kPrimaryColor
     //color Colors.black, // Adjust text color as needed
   );
 
-  static TextStyle kText3 = GoogleFonts.quando(
+  static TextStyle quando = GoogleFonts.quando(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: kPrimaryColor
     //color Colors.black, // Adjust text color as needed
   );
 
-  static TextStyle kText4 = GoogleFonts.quando(
+  static TextStyle quando2 = GoogleFonts.quando(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: kPrimaryColor
     //color Colors.black, // Adjust text color as needed
   );
 
-  static TextStyle kText5 = GoogleFonts.russoOne(
+  static TextStyle russoOne = GoogleFonts.russoOne(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: kPrimaryColor
     //color Colors.black, // Adjust text color as needed
   );
 
-  static TextStyle kText6 = GoogleFonts.novaCut(
+  static TextStyle novaCut = GoogleFonts.novaCut(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: kPrimaryColor

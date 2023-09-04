@@ -31,12 +31,12 @@ class JokeProvider with ChangeNotifier {
          Timer.periodic(const Duration(seconds: 1), (timer) {
            element.time = element.time! - 1;
            sharedPreferences.setString("jokeList", jsonEncode(jokeList));
-           if(element.time==0)
+           if(element.time!<=0)
            {
-             timer.cancel();
              // jokeList.remove(element);
              sharedPreferences.setString("jokeList", jsonEncode(jokeList));
              getJokes(1);
+             timer.cancel();
              notifyListeners();
            }
            notifyListeners();
@@ -116,10 +116,10 @@ class JokeProvider with ChangeNotifier {
             sharedPreferences.setString("jokeList", jsonEncode(jokeList));
             if(value.time!<=0)
             {
-              timer.cancel();
               // jokeList.remove(value);
               sharedPreferences.setString("jokeList", jsonEncode(jokeList));
               getJokes(1);
+              timer.cancel();
               notifyListeners();
             }
             notifyListeners();
