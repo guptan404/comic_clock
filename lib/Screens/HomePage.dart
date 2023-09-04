@@ -35,8 +35,8 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
-    jokeProvider.getJokesFromSharedPrefrences();
+    // JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
+    // jokeProvider.getJokesFromSharedPrefrences();
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
 
