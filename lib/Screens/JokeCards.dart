@@ -32,7 +32,7 @@ class _JokeCardState extends State<JokeCard> {
   void initState() {
     super.initState();
     //when this route starts, it will execute this code
-    Future.delayed(const Duration(seconds: 5), () { //asynchronous delay
+    Future.delayed(const Duration(seconds: 3), () { //asynchronous delay
       if (this.mounted) { //checks if widget is still active and not disposed
         setState(() { //tells the widget builder to rebuild again because ui has updated
           _visible=false;

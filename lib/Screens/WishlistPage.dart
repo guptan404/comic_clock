@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../Providers/JokeProvider.dart';
 import '../Widgets/AppBar.dart';
+import '../Widgets/EmojiContainer.dart';
 import '../Widgets/ListCardContainer.dart';
 import 'JokeCards.dart';
 
@@ -32,7 +33,7 @@ class _WishlistPageState extends State<WishlistPage> {
         decoration: BoxDecoration(gradient: kBgGradient),
         child: Stack(
           children: [
-
+            EmojiContainer(context, 'random',''),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -71,7 +72,7 @@ class _WishlistPageState extends State<WishlistPage> {
                           child: Row(
                             children: [
                               Text(
-                                emojiList[0],
+                                " ${emojiList[0]}",
                                 style: TextStyle(fontSize: 20),
                               ),
                               Visibility(
@@ -79,7 +80,7 @@ class _WishlistPageState extends State<WishlistPage> {
                                 child: Consumer<ThemeProvider>(
                                   builder: (_,themeProvider,__) {
                                     return Text(
-                                      emojiList[1],
+                                      " ${emojiList[1]} ",
                                       style: AppConstants.kText.copyWith(color: kdarkTextColor),
                                     );
                                   }
@@ -99,7 +100,24 @@ class _WishlistPageState extends State<WishlistPage> {
                     child: Padding(
                       padding: const EdgeInsets.only(
                           top: 0, left: 12.0, right: 12.0),
-                      child: ListView.builder(
+                      child: jokeProvider.jokeListFav.values.elementAt(selectedIndex).length==0?
+                          Consumer<ThemeProvider>(
+                            builder: (_,themeProvider,__) {
+                              return Center(
+                                child: Card(
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  color: kPrimaryColor,
+                                  child: Container(
+                                    height: 100,
+                                    // width: 500,
+                                    child: Center(child: Text("Joke not found, \n    but we found your smile! 😄      ",style: themeProvider.selectedFont.copyWith(),textAlign: TextAlign.center,))),
+                              ));
+                            }
+                          )
+                          :ListView.builder(
                         itemCount: jokeProvider.jokeListFav.values.elementAt(selectedIndex).length,
                         itemBuilder: (context, index) {
                           final jokeData = jokeProvider.jokeListFav.values.elementAt(selectedIndex)[index];
