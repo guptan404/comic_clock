@@ -41,7 +41,7 @@ class _JokeCardState extends State<JokeCard> {
                   child: Column(
                     children: [
                       SizedBox(height: 45,),
-                      CustomAppBar(context, '', true, false),
+                      CustomAppBar(context, true, false),
                       SizedBox(height: 85,),
                       CardContainer(
                         context, id ?? "", joke ?? "", widget.isFav,),

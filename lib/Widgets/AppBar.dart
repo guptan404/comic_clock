@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../Utils/GradientIcons.dart';
 
-Widget CustomAppBar(BuildContext context,String type,bool backVisible,bool sortVIsible) {
+Widget CustomAppBar(BuildContext context,bool backVisible,bool sortVIsible) {
   JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
   // jokeProvider.getJokesFromSharedPrefrences();
 
@@ -24,11 +24,11 @@ Widget CustomAppBar(BuildContext context,String type,bool backVisible,bool sortV
                     Navigator.pop(context);
                   },
                   child: Container(
-                    width: 45.0,
-                    height: 45.0,
+                    width: 50.0,
+                    height: 50.0,
                     decoration: BoxDecoration(
                       color: kPrimaryColor, // Replace with your primary color
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(15.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -50,7 +50,7 @@ Widget CustomAppBar(BuildContext context,String type,bool backVisible,bool sortV
               ),
               Container(
                 width: 200.0,
-                height: 45.0,
+                height: 50.0,
                 decoration: BoxDecoration(
                   color: kPrimaryColor, // Replace with your primary color
                   borderRadius: BorderRadius.circular(5.0),
@@ -64,12 +64,11 @@ Widget CustomAppBar(BuildContext context,String type,bool backVisible,bool sortV
                   ],
                 ),
                 child: Center(
-                  child: Text(
-                    'Text',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
+                  child: Image.asset(
+                    logo, // Replace with your image asset
+
+                    height: 50,
+                  )
                 ),
               ),
               Visibility(
@@ -81,11 +80,11 @@ Widget CustomAppBar(BuildContext context,String type,bool backVisible,bool sortV
 
                   },
                   child: Container(
-                    width: 45.0,
-                    height: 45.0,
+                    width: 50.0,
+                    height: 50.0,
                     decoration: BoxDecoration(
                       color: kPrimaryColor, // Replace with your primary color
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(15.0),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
