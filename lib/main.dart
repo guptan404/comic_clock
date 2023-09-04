@@ -1,3 +1,4 @@
+import 'package:comic_clock/Providers/ThemeProvider.dart';
 import 'package:comic_clock/Screens/splash.dart';
 import 'package:comic_clock/Screens/BottomBar.dart';
 import 'package:comic_clock/Widgets/ListCardContainer.dart';
@@ -16,8 +17,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<JokeProvider>(
-      create: (_) => JokeProvider(),
+    return MultiProvider(
+        providers: [
+        ChangeNotifierProvider<JokeProvider>(
+        create: (_) => JokeProvider(),
+    ),
+    ChangeNotifierProvider<ThemeProvider>(
+    create: (_) => ThemeProvider(),
+    )
+    ],
       child:
          MaterialApp(
           title: 'Flutter Demo',

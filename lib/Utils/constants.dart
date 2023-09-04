@@ -64,6 +64,13 @@ class AppConstants {
     //color: Colors.black, // Adjust text color as needed
   );
 
+  static TextStyle robotoFlex = GoogleFonts.robotoFlex(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: kPrimaryColor
+  //color: Colors.black, // Adjust text color as needed
+  );
+
   static TextStyle rocknRollOne = GoogleFonts.rocknRollOne(
       fontSize: 20,
       fontWeight: FontWeight.bold,
@@ -99,6 +106,7 @@ class AppConstants {
     //color Colors.black, // Adjust text color as needed
   );
   static Map<String,TextStyle> fonts = {
+    'Roboto Flex':AppConstants.robotoFlex,
     'Rockn Roll One':AppConstants.rocknRollOne,
     'Quando':AppConstants.quando,
     'Quando2':AppConstants.quando2,

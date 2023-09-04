@@ -87,6 +87,7 @@ class JokeProvider with ChangeNotifier {
     void removeJokeFromFav(JokeModel jokeModel,String emojiTag) async {
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
       jokeListFav[emojiTag]?.remove(jokeModel);
+      jokeModel.isFavourite=false;
       sharedPreferences.setString("jokeListFav", jsonEncode(jokeListFav));
       notifyListeners();
     }

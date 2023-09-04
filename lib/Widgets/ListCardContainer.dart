@@ -1,6 +1,7 @@
 
 
 import 'package:comic_clock/Model/JokeModel.dart';
+import 'package:comic_clock/Providers/ThemeProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,8 +17,8 @@ class ListCardContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<JokeProvider>(
-      builder: (_,jokeProvider, __) {
+    return Consumer2<JokeProvider,ThemeProvider>(
+      builder: (_,jokeProvider,themeProvider, __) {
         return Card(
           elevation: 5,
           shape: RoundedRectangleBorder(
@@ -47,7 +48,7 @@ class ListCardContainer extends StatelessWidget {
                       visible: !isFav,
                       child: Text(
                         "Time Left: "+jokeModel.time.toString(), // id
-                        style: AppConstants.kText.copyWith(fontSize: 14,color: kAccentColor), // Use your timer text style
+                        style: themeProvider.selectedFont.copyWith(fontSize: 14,color: kAccentColor), // Use your timer text style
                       ),
                     ),
                     SizedBox(width: 10),
@@ -58,7 +59,7 @@ class ListCardContainer extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   child: Text(
                     jokeModel.joke??'',//joke
-                    style: AppConstants.kText.copyWith(fontSize: 16,color: kAccentColor),
+                    style: themeProvider.selectedFont.copyWith(fontSize: 16,color: kAccentColor),
                     textAlign: TextAlign.start,
                     //softWrap: true,
                     overflow: TextOverflow.ellipsis,

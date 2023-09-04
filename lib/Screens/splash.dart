@@ -1,4 +1,5 @@
 import 'package:comic_clock/Providers/JokeProvider.dart';
+import 'package:comic_clock/Providers/ThemeProvider.dart';
 import 'package:comic_clock/Screens/BottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,8 @@ class _SplashState extends State<Splash> {
 
   Future<void> getJokesData()
   async {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context,listen: false);
+    await themeProvider.getFontFromSharedPrefrences();
     JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
     await jokeProvider.getJokesFromSharedPrefrences();
     loading =false;

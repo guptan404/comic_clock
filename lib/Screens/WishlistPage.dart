@@ -1,3 +1,4 @@
+import 'package:comic_clock/Providers/ThemeProvider.dart';
 import 'package:comic_clock/Utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,9 +37,9 @@ class _WishlistPageState extends State<WishlistPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 45,
+                  height: 55,
                 ),
-                CustomAppBar(context, false, true),
+                CustomAppBar(context, false, false),
                 SizedBox(
                   height: 5,
                 ),
@@ -75,9 +76,13 @@ class _WishlistPageState extends State<WishlistPage> {
                               ),
                               Visibility(
                                 visible: selectedIndex==index,
-                                child: Text(
-                                  emojiList[1],
-                                  style: AppConstants.kText.copyWith(color: kdarkTextColor),
+                                child: Consumer<ThemeProvider>(
+                                  builder: (_,themeProvider,__) {
+                                    return Text(
+                                      emojiList[1],
+                                      style: AppConstants.kText.copyWith(color: kdarkTextColor),
+                                    );
+                                  }
                                 ),
                               ),
                             ],

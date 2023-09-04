@@ -15,7 +15,7 @@ void _showEmojiInputDialog(BuildContext context) {
   );
 }
 
-Widget EmojiListContainer (BuildContext context,int index) {
+Widget EmojiListContainer (BuildContext context,int ind) {
   final jokeProvider = Provider.of<JokeProvider>(context);
   final emojis = jokeProvider.jokeListFav.keys.toList();
 
@@ -52,8 +52,9 @@ Widget EmojiListContainer (BuildContext context,int index) {
                   padding: const EdgeInsets.all(4.0),
                   child: GestureDetector(
                     onTap: (){
-                      jokeProvider.addJokeToFav(jokeProvider.jokeList[index], emoji);
-                      jokeProvider.jokeList[index].isFavourite = true;
+                      print("index: $ind");
+                      jokeProvider.addJokeToFav(jokeProvider.jokeList[ind], emoji);
+                      jokeProvider.jokeList[ind].isFavourite = true;
                       Fluttertoast.showToast(
                         msg: 'Saved to Favorites',
                         toastLength: Toast.LENGTH_SHORT,

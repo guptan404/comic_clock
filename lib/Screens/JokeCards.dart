@@ -36,7 +36,7 @@ class _JokeCardState extends State<JokeCard> {
       if (this.mounted) { //checks if widget is still active and not disposed
         setState(() { //tells the widget builder to rebuild again because ui has updated
           _visible=false;
-          _capturePng();//update the variable declare this under your class so its accessible for both your widget build and initState which is located under widget build{}
+          //update the variable declare this under your class so its accessible for both your widget build and initState which is located under widget build{}
         });
       }
     });
@@ -61,15 +61,6 @@ class _JokeCardState extends State<JokeCard> {
   }
 
 
-  Future<void> _capturePng() async {
-    RenderRepaintBoundary boundary = globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-    ui.Image image = await boundary.toImage();
-    ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    Uint8List pngBytes = byteData!.buffer.asUint8List();
-    var bs64 = base64Encode(pngBytes);
-    // print(pngBytes);
-    print("bs64: $bs64");
-  }
   //int currentIndex=index;
   @override
   Widget build(BuildContext context) {
@@ -82,189 +73,186 @@ class _JokeCardState extends State<JokeCard> {
             final currentIndex = jokeProvider.currentIndex;
             List<JokeModel>()=jokeProvider.extractAllJokes();
 
-            return RepaintBoundary(
-              key: globalKey,
-              child: Scaffold(
-                  resizeToAvoidBottomInset:false,
-                body: Container(
-                    decoration: BoxDecoration(
-                        gradient: kBgGradient
-                    ),
-                    child: Stack(
-                      children: [
-                        EmojiContainer(context, 'random',''),
-                        Column(
-                          children: [
-                            SizedBox(height: 45,),
-                            CustomAppBar(context, true, false),
-                            SizedBox(height: 45,),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 48.0),
-                              child: Row(
-                                children: [
-                                  Spacer(),
-                                  Visibility(
-                                    //replacement: SizedBox.expand(),
-                                    visible: jokeProvider.isEmojiListVisible,
-                                      child: EmojiListContainer(context,currentIndex)),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 20,),
-                            CardContainer(
-                              context, currentIndex , widget.jokeModel ??JokeModel() , widget.isFav,),
-                            SizedBox(height: 25,),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-
-                                        });
-                                        final newIndex = jokeProvider.jokeList.indexOf(widget.jokeModel) - 1;
-
-                                        if (newIndex >= 0) {
-                                          jokeProvider.currentIndex = newIndex;
-                                          widget.jokeModel=jokeProvider.jokeList[jokeProvider.jokeList.indexOf(widget.jokeModel) - 1];
-                                        }
-                                        else{
-                                          // jokeProvider.currentIndex = jokeProvider.jokeList.length;
-                                        }
-                                      },
-                                      child: AppIcons.leftArrow),
-                                  GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-
-                                        });
-                                        final newIndex = jokeProvider.jokeList.indexOf(widget.jokeModel) + 1;
-                                        if (newIndex < jokeProvider.jokeList.length) {
-                                          jokeProvider.currentIndex = newIndex;
-                                          widget.jokeModel=jokeProvider.jokeList[jokeProvider.jokeList.indexOf(widget.jokeModel) + 1];
-                                        }
-                                        else{
-                                          jokeProvider.currentIndex = 0;
-                                        }
-                                      },
-                                      child: AppIcons.rightArrow)
-                                ],
-                              ),
-                            ),
-
-
-                          ],
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Visibility(
-                            visible: _visible,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                DelayedWidget(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                      ],
-                                    ),
-                                    delayDuration: Duration(milliseconds: 100),// Not required
-                                    animationDuration: Duration(seconds: 1),// Not required
-                                    animation: DelayedAnimations.SLIDE_FROM_BOTTOM
-                                ),
-                                DelayedWidget(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                        Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                      ],
-                                    ),
-                                    delayDuration: Duration(milliseconds: 200),// Not required
-                                    animationDuration: Duration(seconds: 1),// Not required
-                                    animation: DelayedAnimations.SLIDE_FROM_BOTTOM
-                                ),
-                                DelayedWidget(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                        Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                      ],
-                                    ),
-                                    delayDuration: Duration(milliseconds: 200),// Not required
-                                    animationDuration: Duration(seconds: 1),// Not required
-                                    animation: DelayedAnimations.SLIDE_FROM_BOTTOM
-                                ),
-
-                                DelayedWidget(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                        SizedBox(width: 30,),
-                                        Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                        Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                        Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                        Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                      ],
-                                    ),
-                                    delayDuration: Duration(milliseconds: 1200),// Not required
-                                    animationDuration: Duration(seconds: 1),// Not required
-                                    animation: DelayedAnimations.SLIDE_FROM_BOTTOM
-                                ),
-
-                                DelayedWidget(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh.gif",height: 100,width: 100,),
-                                        Image.asset("assets/laugh2.gif",height: 100,width: 100,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh.gif",height: 100,width: 100,),
-                                        SizedBox(width: 40,),
-                                        Image.asset("assets/laugh2.gif",height: 100,width: 100,),
-                                      ],
-                                    ),
-                                    delayDuration: Duration(milliseconds: 2400),// Not required
-                                    animationDuration: Duration(seconds: 1),// Not required
-                                    animation: DelayedAnimations.SLIDE_FROM_BOTTOM
-                                ),
+            return Scaffold(
+                resizeToAvoidBottomInset:false,
+              body: Container(
+                  decoration: BoxDecoration(
+                      gradient: kBgGradient
+                  ),
+                  child: Stack(
+                    children: [
+                      EmojiContainer(context, 'random',''),
+                      Column(
+                        children: [
+                          SizedBox(height: 45,),
+                          CustomAppBar(context, true, false),
+                          SizedBox(height: 45,),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 48.0),
+                            child: Row(
+                              children: [
+                                Spacer(),
+                                Visibility(
+                                  //replacement: SizedBox.expand(),
+                                  visible: jokeProvider.isEmojiListVisible,
+                                    child: EmojiListContainer(context,currentIndex)),
                               ],
                             ),
                           ),
+                          SizedBox(height: 20,),
+                          CardContainer(
+                            context, currentIndex , widget.jokeModel ??JokeModel() , widget.isFav,),
+                          SizedBox(height: 25,),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+
+                                      });
+                                      final newIndex = jokeProvider.jokeList.indexOf(widget.jokeModel) - 1;
+
+                                      if (newIndex >= 0) {
+                                        jokeProvider.currentIndex = newIndex;
+                                        widget.jokeModel=jokeProvider.jokeList[jokeProvider.jokeList.indexOf(widget.jokeModel) - 1];
+                                      }
+                                      else{
+                                        // jokeProvider.currentIndex = jokeProvider.jokeList.length;
+                                      }
+                                    },
+                                    child: AppIcons.leftArrow),
+                                GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+
+                                      });
+                                      final newIndex = jokeProvider.jokeList.indexOf(widget.jokeModel) + 1;
+                                      if (newIndex < jokeProvider.jokeList.length) {
+                                        jokeProvider.currentIndex = newIndex;
+                                        widget.jokeModel=jokeProvider.jokeList[jokeProvider.jokeList.indexOf(widget.jokeModel) + 1];
+                                      }
+                                      else{
+                                        jokeProvider.currentIndex = 0;
+                                      }
+                                    },
+                                    child: AppIcons.rightArrow)
+                              ],
+                            ),
+                          ),
+
+
+                        ],
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Visibility(
+                          visible: _visible,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              DelayedWidget(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                    ],
+                                  ),
+                                  delayDuration: Duration(milliseconds: 100),// Not required
+                                  animationDuration: Duration(seconds: 1),// Not required
+                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM
+                              ),
+                              DelayedWidget(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                    ],
+                                  ),
+                                  delayDuration: Duration(milliseconds: 200),// Not required
+                                  animationDuration: Duration(seconds: 1),// Not required
+                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM
+                              ),
+                              DelayedWidget(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                    ],
+                                  ),
+                                  delayDuration: Duration(milliseconds: 200),// Not required
+                                  animationDuration: Duration(seconds: 1),// Not required
+                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM
+                              ),
+
+                              DelayedWidget(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      SizedBox(width: 30,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                    ],
+                                  ),
+                                  delayDuration: Duration(milliseconds: 1200),// Not required
+                                  animationDuration: Duration(seconds: 1),// Not required
+                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM
+                              ),
+
+                              DelayedWidget(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh.gif",height: 100,width: 100,),
+                                      Image.asset("assets/laugh2.gif",height: 100,width: 100,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh.gif",height: 100,width: 100,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh2.gif",height: 100,width: 100,),
+                                    ],
+                                  ),
+                                  delayDuration: Duration(milliseconds: 2400),// Not required
+                                  animationDuration: Duration(seconds: 1),// Not required
+                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    )
-                ),
-
-
+                      ),
+                    ],
+                  )
               ),
+
+
             );
           }
       );
