@@ -18,7 +18,8 @@ class WishlistPage extends StatefulWidget {
 class _WishlistPageState extends State<WishlistPage> {
   @override
   Widget build(BuildContext context) {
-    JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
+    JokeProvider jokeProvider =
+        Provider.of<JokeProvider>(context, listen: false);
     jokeProvider.getJokesFromSharedPrefrences();
     final height = MediaQuery.of(context).size.height;
     final emojiTags = [
@@ -27,59 +28,130 @@ class _WishlistPageState extends State<WishlistPage> {
       '😄',
     ];
     String selectedEmoji = '😀';
-    return  Scaffold(
+    return Scaffold(
       body: Container(
-          decoration: BoxDecoration(
-            gradient: kBgGradient
-          ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+        decoration: BoxDecoration(gradient: kBgGradient),
+        child: Stack(
           children: [
-            SizedBox(height: 45,),
-            CustomAppBar(context,false,true),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: emojiTags.map((emoji) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedEmoji = emoji;
-                      print(selectedEmoji);
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: kPrimaryColor
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          emoji,
-                          style: TextStyle(fontSize: 30),
+            // Container(
+            //   height: MediaQuery.of(context).size.height,
+            //   width: MediaQuery.of(context).size.width,
+            //   color: Colors.transparent,
+            //   child: Column(
+            //     children: [
+            //       Row(
+            //         children: [
+            //           //SizedBox(width: 5),
+            //           Opacity(
+            //             opacity: 0.3,
+            //             child: Image.asset(
+            //               cowboyEmojiImg,
+            //               width: 120,
+            //               height: 120,
+            //             ),
+            //           ),
+            //           SizedBox(height: 10), // Add SizedBox for vertical spacing
+            //         ],
+            //       ),
+            //       // Add SizedBox for horizontal spacing
+            //       Row(
+            //         children: [
+            //          Spacer(),
+            //           Opacity(
+            //             opacity: 0.7,
+            //             child: Image.asset(
+            //               hourglassImg,
+            //               width: 80,
+            //               height: 80,
+            //             ),
+            //           ),
+            //           SizedBox(height: 10), // Add SizedBox for vertical spacing
+            //         ],
+            //       ),
+            //       SizedBox(width: 40), // Add SizedBox for horizontal spacing
+            //       Row(
+            //         children: [
+            //           SizedBox(width: 40),
+            //           Opacity(
+            //             opacity: 0.8,
+            //             child: Image.asset(
+            //               winkEmojiImg,
+            //               width: 70,
+            //               height: 70,
+            //             ),
+            //           ),
+            //           // Add SizedBox for vertical spacing
+            //         ],
+            //       ),
+            //       SizedBox(width: 10), // Add SizedBox for horizontal spacing
+            //       Row(
+            //         children: [
+            //           Opacity(
+            //             opacity: 0.8,
+            //             child: Image.asset(
+            //               fireEmoImg,
+            //               width: 60,
+            //               height: 60,
+            //             ),
+            //           ),
+            //           SizedBox(height: 80), // Add SizedBox for vertical spacing
+            //         ],
+            //       ),
+            //       SizedBox(width: 10), // Add SizedBox for horizontal spacing
+            //       // Add more columns and SizedBox widgets as needed
+            //     ],
+            //   ),
+            // ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 45,
+                ),
+                CustomAppBar(context, false, true),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: emojiTags.map((emoji) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedEmoji = emoji;
+                          print(selectedEmoji);
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: kPrimaryColor),
+                        child: Row(
+                          children: [
+                            Text(
+                              emoji,
+                              style: TextStyle(fontSize: 30),
+                            ),
+                            Visibility(
+                              visible: selectedEmoji == emoji,
+                              child: Text(
+                                'emoji', // Emoji name
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ],
                         ),
-                        Visibility(
-                          visible: selectedEmoji == emoji,
-                          child: Text(
-                            'emoji', // Emoji name
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Consumer<JokeProvider>(
-                  builder: (_,jokeProvider,__) {
-                    print("jokeProvider.jokeList.length ${jokeProvider.jokeList.length}");
+                      ),
+                    );
+                  }).toList(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Consumer<JokeProvider>(builder: (_, jokeProvider, __) {
+                    print(
+                        "jokeProvider.jokeList.length ${jokeProvider.jokeList.length}");
                     return Container(
-                      height: height-280,
+                      height: height - 280,
                       child: Padding(
-                        padding: const EdgeInsets.only(top:0,left: 12.0,right: 12.0),
+                        padding: const EdgeInsets.only(
+                            top: 0, left: 12.0, right: 12.0),
                         child: ListView.builder(
                           itemCount: jokeProvider.jokeList.length,
                           itemBuilder: (context, index) {
@@ -89,22 +161,26 @@ class _WishlistPageState extends State<WishlistPage> {
                             final status = jokeData.status;
 
                             return GestureDetector(
-                                onTap: (){
-                                  jokeProvider.currentIndex=index;
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => JokeCard(isFav: true,)));},
+                                onTap: () {
+                                  jokeProvider.currentIndex = index;
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => JokeCard(
+                                                isFav: true,
+                                              )));
+                                },
                                 child: ListCardContainer(
                                   index: index,
-                                )
-                            );
-
+                                ));
                           },
                         ),
                       ),
                     );
-                  }
-              ),
+                  }),
+                ),
+              ],
             ),
-
           ],
         ),
       ),

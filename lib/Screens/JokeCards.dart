@@ -1,3 +1,4 @@
+import 'package:comic_clock/Widgets/EmojiListContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,9 +43,11 @@ class _JokeCardState extends State<JokeCard> {
                     children: [
                       SizedBox(height: 45,),
                       CustomAppBar(context, true, false),
-                      SizedBox(height: 85,),
+                      SizedBox(height: 45,),
+                      EmojiListContainer(context),
+                      SizedBox(height: 20,),
                       CardContainer(
-                        context, id ?? "", joke ?? "", widget.isFav,),
+                        context, currentIndex , joke ?? "", widget.isFav,),
                       SizedBox(height: 25,),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
