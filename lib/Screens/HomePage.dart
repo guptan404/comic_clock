@@ -62,7 +62,6 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Consumer<JokeProvider>(
                     builder: (_,jokeProvider,__) {
-                      print("jokeProvider.jokeList.length ${jokeProvider.jokeList.length}");
                       return Container(
                         height: height-250,
                           child: Padding(

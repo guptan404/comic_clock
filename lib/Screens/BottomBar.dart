@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 import '../Utils/GradientIcons.dart';
 import '../Widgets/CustomBottomNavigationBar.dart';
-import '../Widgets/CustomShape.dart';
+import '../Utils/CustomShape.dart';
 
 class BottomBar extends StatefulWidget {
   @override

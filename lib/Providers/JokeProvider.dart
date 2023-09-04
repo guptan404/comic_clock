@@ -45,6 +45,11 @@ class JokeProvider with ChangeNotifier {
      if (jokeListString != null) {
        List<dynamic> jokeListJson = jsonDecode(jokeListString);
        jokeList = jokeListJson.map((e) => JokeModel.fromJson(e)).toList();
+       if(jokeList.length<10)
+         {
+           jokeList.clear();
+           getJokes(10);
+         }
        print("jokeList is $jokeList");
        jokeList.forEach((element) {
          Timer.periodic(const Duration(seconds: 1), (timer) {

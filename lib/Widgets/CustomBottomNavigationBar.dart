@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../Utils/Bouncing.dart';
 import '../Utils/GradientIcons.dart';
 import '../Utils/constants.dart';
-import 'CustomShape.dart';
+import '../Utils/CustomShape.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final Function(int) onTabSelected;

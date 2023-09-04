@@ -4,7 +4,8 @@ import 'package:comic_clock/Screens/BottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../Widgets/CustomShape.dart';
+import '../Utils/CustomShape.dart';
+import '../Widgets/EmojiContainer.dart';
 import '../Widgets/ListCardContainer.dart';
 
 class Splash extends StatefulWidget {
@@ -43,7 +44,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: loading?Center(
-        child: Text('Splash Screen'),
+        child: EmojiContainer(context, 'random',''),
       ):BottomBar()
       );
   }
