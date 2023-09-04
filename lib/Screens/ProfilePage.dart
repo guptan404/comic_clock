@@ -1,6 +1,8 @@
+import 'package:delayed_widget/delayed_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../Providers/JokeProvider.dart';
 import '../Providers/ThemeProvider.dart';
 import '../Utils/constants.dart';
 import '../Widgets/AppBar.dart';
@@ -28,8 +30,8 @@ class _ProfilePageState extends State<ProfilePage> {
           decoration: BoxDecoration(
               gradient: kBgGradient
           ),
-          child: Consumer<ThemeProvider>(
-              builder: (_,themeProvider,__) {
+          child: Consumer2<JokeProvider,ThemeProvider>(
+              builder: (_,jokeProvider,themeProvider,__) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -63,19 +65,29 @@ class _ProfilePageState extends State<ProfilePage> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SizedBox(height: 5,),
-                                  Text('Smiles Steve',style: AppConstants.kProfileText,),
+                                  DelayedWidget(
+                                      child: Text('Smiles Steve',style: AppConstants.kProfileText,),
+                                      delayDuration: Duration(milliseconds: 100),// Not required
+                                      animationDuration: Duration(seconds: 1),// Not required
+                                      animation: DelayedAnimations.SLIDE_FROM_LEFT,// Not required
+                                  ),
                                   SizedBox(height: 5,),
                                   Center(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text('1',style: themeProvider.selectedFont,),
-                                        Image.asset(
-                                          hourglassImg, // Replace with your image asset
-                                          height: 35,
-                                        ),
-                                        Text('Giggle Streak',style: themeProvider.selectedFont,)
-                                      ],
+                                    child: DelayedWidget(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text("${jokeProvider.curentStreak} ",style: themeProvider.selectedFont,),
+                                          Image.asset(
+                                            hourglassImg, // Replace with your image asset
+                                            height: 35,
+                                          ),
+                                          Text(' Giggle Streak',style: themeProvider.selectedFont,)
+                                        ],
+                                      ),
+                                        delayDuration: Duration(milliseconds: 100),// Not required
+                                        animationDuration: Duration(seconds: 1),// Not required
+                                        animation: DelayedAnimations.SLIDE_FROM_RIGHT,
                                     ),
                                   )
                                 ],

@@ -14,6 +14,7 @@ class JokeProvider with ChangeNotifier {
   JokeService jokeService = JokeService();
   bool isAsc = true;
   int currentIndex = 0;
+  int curentStreak = 0;
 
   bool _isEmojiListVisible = false;
 
@@ -159,6 +160,43 @@ class JokeProvider with ChangeNotifier {
           notifyListeners();
       }
    }
+
+   //logic to calculate Streak of the user of app opened
+    Future<int> calculateStreak()
+    async {
+      SharedPreferences sharedPreferences =  await SharedPreferences.getInstance();
+      String? lastOpened = sharedPreferences.getString("lastOpened");
+      DateTime now = DateTime.now();
+      if(lastOpened==null)
+        {
+          sharedPreferences.setString("lastOpened", now.toString());
+          return 0;
+        }
+      DateTime lastOpenedDate = DateTime.parse(lastOpened);
+      int difference = now.difference(lastOpenedDate).inDays;
+      // sharedPreferences.setInt("currentStreak", curentStreak);
+      if(difference==0)
+        {
+          return sharedPreferences.getInt("currentStreak")??0;
+        }
+      else if(difference==1)
+        {
+          sharedPreferences.setString("lastOpened", now.toString());
+          curentStreak = sharedPreferences.getInt("currentStreak")??0;
+          curentStreak++;
+          sharedPreferences.setInt("currentStreak", curentStreak);
+          return curentStreak;
+        }
+      else
+        {
+          sharedPreferences.setString("lastOpened", now.toString());
+          curentStreak = 0;
+          sharedPreferences.setInt("currentStreak", curentStreak);
+          return curentStreak;
+        }
+
+    }
+
 
   void reverseList() {
     jokeList = jokeList.reversed.toList();

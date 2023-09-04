@@ -33,6 +33,7 @@ class _SplashState extends State<Splash> {
     await themeProvider.getFontFromSharedPrefrences();
     JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
     await jokeProvider.getJokesFromSharedPrefrences();
+    await jokeProvider.calculateStreak();
     loading =false;
     // jokeProvider.getJokeEveryMinute();
     setState(() {
