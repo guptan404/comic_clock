@@ -148,6 +148,7 @@ class AppConstants {
 
 String cowboyEmojiImg="assets/cowboyEmoji.png";
 String bubble = "assets/bubble.png";
+String doubleBubble = "assets/doubleBubble.png";
 String hourglassImg="assets/hourglass.png";
 String winkEmojiImg="assets/winkEmoji.png";
 String fireEmoImg="assets/fireEmoji.png";

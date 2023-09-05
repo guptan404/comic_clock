@@ -114,11 +114,13 @@ class _ComicProfilePageState extends State<ComicProfilePage> {
                         SizedBox(height: 45,),
                         Center(
                           child: Container(
-                            width: 200, // Adjust the width as needed
-                            height:150, // Adjust the height as needed
+                            width: 250, // Adjust the width as needed
+                            height:200, // Adjust the height as needed
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage(specchBoxImg),
+                                image: AssetImage(yellowRoundSpeech),
+
+                                scale: 0.6,
                                 // Replace with your image asset
                                 fit: BoxFit.fill, // You can adjust the fit as needed
                               ),
@@ -126,10 +128,11 @@ class _ComicProfilePageState extends State<ComicProfilePage> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Radio(
                                         value: 'cartoon',
@@ -140,13 +143,14 @@ class _ComicProfilePageState extends State<ComicProfilePage> {
                                             _selectedTheme = value!; // Update the selected theme to "cartoon"
                                           });
                                         },
-                                        activeColor: cSecondaryColor,
-                                        focusColor: cSecondaryColor,
+                                        activeColor: kdarkTextColor,
+                                        focusColor: kdarkTextColor,
                                       ),
                                       Text('Cartoon', style: AppConstants.comicSubHead.copyWith(color: kdarkTextColor, fontSize: 26)),
                                     ],
                                   ),
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Radio(
                                         value: 'comic',
@@ -157,10 +161,10 @@ class _ComicProfilePageState extends State<ComicProfilePage> {
                                             _selectedTheme = value!; // Update the selected theme to "comic"
                                           });
                                         },
-                                        activeColor: cSecondaryColor,
-                                        focusColor: cSecondaryColor,
+                                        activeColor: kdarkTextColor,
+                                        focusColor: kdarkTextColor,
                                       ),
-                                      Text('Comic', style: AppConstants.comicSubHead.copyWith(color: kdarkTextColor, fontSize: 26)),
+                                      Text('Comic    ', style: AppConstants.comicSubHead.copyWith(color: kdarkTextColor, fontSize: 26)),
                                     ],
                                   ),
                                 ],
