@@ -19,6 +19,10 @@ class ListCardContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer2<JokeProvider,ThemeProvider>(
       builder: (_,jokeProvider,themeProvider, __) {
+        int? totalSeconds = jokeProvider.jokeList[index].time;
+        int minutes = totalSeconds! ~/ 60; // ~/ operator gives you the integer division
+        int seconds = totalSeconds % 60;
+        String formattedTime = '$minutes:${seconds.toString().padLeft(2,'0')}';
         return Card(
           elevation: 5,
           shape: RoundedRectangleBorder(
@@ -47,7 +51,7 @@ class ListCardContainer extends StatelessWidget {
                     Visibility(
                       visible: !isFav,
                       child: Text(
-                        "Time Left: "+jokeModel.time.toString(), // id
+                        "$formattedTime", // id
                         style: themeProvider.selectedFont.copyWith(fontSize: 14,color: kAccentColor), // Use your timer text style
                       ),
                     ),

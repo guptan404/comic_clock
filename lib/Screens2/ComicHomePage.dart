@@ -36,12 +36,17 @@ class _ComicHomePageState extends State<ComicHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     int randomNumber = random.nextInt(9);
     return  Scaffold(
       body: Consumer<JokeProvider>(
         builder: (_,jokeProvider,__) {
           List<JokeModel> favList=jokeProvider.extractAllJokes();
           var joke = jokeProvider.jokeList[index];
+          int? totalSeconds = jokeProvider.jokeList[index].time;
+          int minutes = totalSeconds! ~/ 60; // ~/ operator gives you the integer division
+          int seconds = totalSeconds % 60;
+          String formattedTime = '$minutes:${seconds.toString().padLeft(2,'0')}';
           return Stack(
             alignment: Alignment.center,
             children: [
@@ -210,7 +215,7 @@ class _ComicHomePageState extends State<ComicHomePage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "${joke.time}",
+                        "${formattedTime}",
                         style: AppConstants.comic.copyWith(fontSize: 30)
                       ),
                     ),
