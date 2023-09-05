@@ -32,6 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           child: Consumer2<JokeProvider,ThemeProvider>(
               builder: (_,jokeProvider,themeProvider,__) {
+                _selectedTheme=themeProvider.theme;
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -132,6 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 groupValue: _selectedTheme, // Use a variable to track the selected theme
                                 onChanged: (value) {
                                   setState(() {
+                                    themeProvider.changeTheme(value!);
                                     _selectedTheme = value!; // Update the selected theme to "cartoon"
                                   });
                                 },
@@ -148,6 +150,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 groupValue: _selectedTheme, // Use the same variable to track the selected theme
                                 onChanged: (value) {
                                   setState(() {
+                                    themeProvider.changeTheme(value!);
                                     _selectedTheme = value!; // Update the selected theme to "comic"
                                   });
                                 },

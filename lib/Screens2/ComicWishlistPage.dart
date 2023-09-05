@@ -1,7 +1,19 @@
+import 'dart:math';
+
+import 'package:comic_clock/Providers/JokeProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:page_flip/page_flip.dart';
+import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:text_to_speech/text_to_speech.dart';
 
+import '../Model/JokeModel.dart';
+import '../Providers/ThemeProvider.dart';
 import '../Utils/constants.dart';
+import '../Widgets/CardContainer.dart';
+import '../Widgets/EmojiListContainer.dart';
 
 class ComicWishlistPage extends StatefulWidget {
   const ComicWishlistPage({Key? key}) : super(key: key);
@@ -10,98 +22,315 @@ class ComicWishlistPage extends StatefulWidget {
   State<ComicWishlistPage> createState() => _ComicWishlistPageState();
 }
 
+int index = 0;
+String findKeyForJoke(Map<String, List<JokeModel>> jokeListFav, JokeModel jokeToFind) {
+  for (var entry in jokeListFav.entries) {
+    if (entry.value.contains(jokeToFind)) {
+      return entry.key;
+    }
+  }
+  return ''; // Return an empty string if not found
+}
+
+final _controller = GlobalKey<PageFlipWidgetState>();
+var selectedEmoji = '';
+int selectedIndex=0;
+
 class _ComicWishlistPageState extends State<ComicWishlistPage> {
   @override
   Widget build(BuildContext context) {
+    JokeProvider jokeProvider = Provider.of<JokeProvider>(context, listen: false);
     return  Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          // 1st Container with an image
-          Container(
-            // height: 200,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(page4Img),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+      body: PageFlipWidget(
+          key: _controller,
+          index: index,
+          children:[
+            for(int i=0;i<jokeProvider.jokeListFav.values.elementAt(selectedIndex).length;i++)
+              pages(i,0)
+          ]
 
-          // 2nd Container with three icons and text
-          Positioned(
-            top: 70,
-            left: 80,
-            child: Container(
-              decoration: BoxDecoration(
-                color: cAccentColor,
-                borderRadius: BorderRadius.circular(5.0),
-                border: Border.all(
-                  color: Colors.black, // Border color
-                  width: 5.0, // Border width
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    GestureDetector(
-                        onTap:(){
-                          // if(((joke.isFavourite??false)||favList.contains(joke)))
-                          //   //remove a joke
-                          //     {
-                          //   jokeProvider.removeJokeFromFav(joke, findKeyForJoke(jokeProvider.jokeListFav, joke));
-                          //   Fluttertoast.showToast(
-                          //     msg: 'Removed from Favorites',
-                          //     toastLength: Toast.LENGTH_SHORT,
-                          //     gravity: ToastGravity.BOTTOM,
-                          //     backgroundColor: kAccentColor,
-                          //     textColor: Colors.white,
-                          //   );
-                          // }
-                          // else{
-                          //   jokeProvider.toggleEmojiListVisibility();
-                          // }
-                        },
-                        child: Icon(Icons.bookmark_border, color: Colors.black,size: 30,)),
-                    GestureDetector(
-                        onTap:(){
-                          // TextToSpeech textToSpeech = TextToSpeech();
-                          // textToSpeech.speak(joke.joke??'');
-                        },
-                        child: Icon(Icons.volume_up, color: Colors.black,size: 30)),
-                    GestureDetector(
-                        onTap:(){
-                          // _onShare(context,joke.joke??'');
-                        },
-                        child: Icon(Icons.share, color: Colors.black,size: 30)),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          //SizedBox(height: 10),
-          Center(
-            child: Container(
-              height: 200,
-              width: 200,
-              color: Colors.red,
-              child: Text(
-                'Your Text Here',
-                style: TextStyle(
-                  color: cPrimaryColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-
-          // 3rd Container with Visibility widget and text
-
-        ],
       ),
     );
   }
+  Random random = Random();
+  Widget pages(int index,int selectedIndex)
+  {
+    int randomNumber = random.nextInt(9);
+    return Consumer<JokeProvider>(
+        builder: (_,jokeProvider,__) {
+          List<JokeModel> favList=jokeProvider.extractAllJokes();
+          var joke = jokeProvider.jokeListFav.values.elementAt(selectedIndex)[index];
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              // 1st Container with an image
+              Container(
+                // height: 200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(comicPages[randomNumber]),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+
+              // 2nd Container with three icons and text
+              Positioned(
+                top: 70,
+                left: 80,
+                child: Column(
+                  children: [
+                    Container(
+                      child: Row(
+                        children: [
+                          Visibility(
+                            //replacement: SizedBox.expand(),
+                              visible: jokeProvider.isEmojiListVisible,
+                              child: EmojiListContainer(context,index)),
+                        ],
+                      ),
+                    ),
+                    // Container(
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(right: 48.0),
+                    //     child: Row(
+                    //       children: [
+                    //         Spacer(),
+                    //         Visibility(
+                    //           //replacement: SizedBox.expand(),
+                    //             visible: jokeProvider.isEmojiListVisible,
+                    //             child: EmojiListContainer(context,index)),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                    SizedBox(height: 5,),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: cAccentColor,
+                        borderRadius: BorderRadius.circular(5.0),
+                        border: Border.all(
+                          color: Colors.black, // Border color
+                          width: 5.0, // Border width
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            GestureDetector(
+                              onTap:(){
+                                if(((joke.isFavourite??false)||favList.contains(joke)))
+                                  //remove a joke
+                                    {
+                                  jokeProvider.removeJokeFromFav(joke, findKeyForJoke(jokeProvider.jokeListFav, joke));
+                                  Fluttertoast.showToast(
+                                    msg: 'Removed from Favorites',
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: kAccentColor,
+                                    textColor: Colors.white,
+                                  );
+                                }
+                                else{
+                                  print("in else");
+                                  jokeProvider.toggleEmojiListVisibility();
+                                }
+                              },
+                              child: ((joke.isFavourite??false)||favList.contains(joke)) ? AppIcons.save2 : AppIcons.unsaved2,
+                            ),
+                            GestureDetector(
+                                onTap:(){
+                                  TextToSpeech textToSpeech = TextToSpeech();
+                                  textToSpeech.speak(joke.joke??'');
+                                },
+                                child: Icon(Icons.volume_up, color: Colors.black,size: 30)),
+                            GestureDetector(
+                                onTap:(){
+                                  _onShare(context,joke.joke??'');
+                                },
+                                child: Icon(Icons.share, color: Colors.black,size: 30)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Positioned(
+              //   bottom: 10,
+              //   right: 30,
+              //   child: GestureDetector(
+              //       onTap: (){
+              //         // setState(() {
+              //         //
+              //         // });
+              //         final newIndex = index + 1;
+              //         if (newIndex < jokeProvider.jokeList.length) {
+              //           this.index=newIndex;
+              //           _controller.currentState?.nextPage();
+              //           setState(() {
+              //
+              //           });
+              //         }
+              //         else{
+              //           Fluttertoast.showToast(msg: "Last Page");
+              //           // jokeProvider.currentIndex = jokeProvider.jokeList.length;
+              //         }
+              //       },
+              //       child:Icon(Icons.arrow_circle_right_sharp, color: Colors.white,size: 40)),
+              // ),
+              //SizedBox(height: 10),
+              Center(
+                child: Container(
+                  height: 200,
+                  width: 200,
+                  // color: Colors.red,
+                  child: Text(
+                      joke.joke??"",
+                      style: AppConstants.comic
+                  ),
+                ),
+              ),
+              // Positioned(
+              //     bottom: 10,
+              //     left: 30,
+              //     child: GestureDetector(
+              //         onHorizontalDragEnd: (dragEndDetails) {
+              //           if (dragEndDetails.primaryVelocity! < 0) {
+              //             // Page forwards
+              //             print('Move page forwards');
+              //           } else if (dragEndDetails.primaryVelocity! > 0) {
+              //             // Page backwards
+              //             print('Move page backwards');
+              //           }
+              //         },
+              //         onTap: (){
+              //
+              //           // setState(() {
+              //           //
+              //           // });
+              //           final newIndex = index - 1;
+              //           //
+              //           if (newIndex >= 0) {
+              //             _controller.currentState?.previousPage();
+              //             setState(() {
+              //
+              //             });
+              //           }
+              //           else{
+              //             Fluttertoast.showToast(msg: "First Page");
+              //             // jokeProvider.currentIndex = jokeProvider.jokeList.length;
+              //           }
+              //         },
+              //         child: Icon(Icons.arrow_circle_left_sharp, color: Colors.white,size: 40))),
+              // 3rd Container with Visibility widget and text
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Visibility(
+                    visible: true, // Set this to control visibility
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: cAccentColor,
+                        borderRadius: BorderRadius.circular(5.0),
+                        border: Border.all(
+                          color: Colors.black, // Border color
+                          width: 5.0, // Border width
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: jokeProvider.jokeListFav.keys.length,
+                            itemBuilder: (context, index) {
+                              final emoji = jokeProvider.jokeListFav.keys.elementAt(index);
+                              final emojiList=emoji.split(' ');
+                              // final
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedEmoji = emoji;
+                                    selectedIndex=index;
+                                    print(selectedEmoji);
+                                  });
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.all(8.0), // Add margin between items
+                                  padding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0), // Add padding to each item
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    color: kSecondaryColor,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        " ${emojiList[0]}",
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                      Visibility(
+                                        visible: selectedIndex==index,
+                                        child: Consumer<ThemeProvider>(
+                                            builder: (_,themeProvider,__) {
+                                              return Text(
+                                                " ${emojiList[1]} ",
+                                                style: AppConstants.kText.copyWith(color: kdarkTextColor),
+                                              );
+                                            }
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
+    );
+  }
+
+  void _onShare(BuildContext context,String text) async {
+    // A builder is used to retrieve the context immediately
+    // surrounding the ElevatedButton.
+    //
+    // The context's `findRenderObject` returns the first
+    // RenderObject in its descendent tree when it's not
+    // a RenderObjectWidget. The ElevatedButton's RenderObject
+    // has its position and size after it's built.
+    final box = context.findRenderObject() as RenderBox?;
+
+    if (uri.isNotEmpty) {
+      await Share.shareUri(Uri.parse(uri));
+    } else if (imagePaths.isNotEmpty) {
+      final files = <XFile>[];
+
+      // save the bytes as image file
+      // final file = XFile.fromData(bytes!, name: "Joke");
+      // files.add(file);
+      await Share.shareXFiles(files,
+          text: text,
+          subject: subject,
+          sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+    } else {
+      await Share.share(text,
+          subject: subject,
+          sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+    }
+  }
+
 }

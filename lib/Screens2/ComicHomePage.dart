@@ -160,29 +160,29 @@ class _ComicHomePageState extends State<ComicHomePage> {
                 ),
               ),
 
-              Positioned(
-                bottom: 10,
-                right: 30,
-                child: GestureDetector(
-                    onTap: (){
-                      // setState(() {
-                      //
-                      // });
-                      final newIndex = index + 1;
-                      if (newIndex < jokeProvider.jokeList.length) {
-                        this.index=newIndex;
-                        _controller.currentState?.nextPage();
-                        setState(() {
-
-                        });
-                      }
-                      else{
-                        Fluttertoast.showToast(msg: "Last Page");
-                        // jokeProvider.currentIndex = jokeProvider.jokeList.length;
-                      }
-                    },
-                    child:Icon(Icons.arrow_circle_right_sharp, color: Colors.white,size: 40)),
-              ),
+              // Positioned(
+              //   bottom: 10,
+              //   right: 30,
+              //   child: GestureDetector(
+              //       onTap: (){
+              //         // setState(() {
+              //         //
+              //         // });
+              //         final newIndex = index + 1;
+              //         if (newIndex < jokeProvider.jokeList.length) {
+              //           this.index=newIndex;
+              //           _controller.currentState?.nextPage();
+              //           setState(() {
+              //
+              //           });
+              //         }
+              //         else{
+              //           Fluttertoast.showToast(msg: "Last Page");
+              //           // jokeProvider.currentIndex = jokeProvider.jokeList.length;
+              //         }
+              //       },
+              //       child:Icon(Icons.arrow_circle_right_sharp, color: Colors.white,size: 40)),
+              // ),
               //SizedBox(height: 10),
               Center(
                 child: Container(
@@ -195,38 +195,38 @@ class _ComicHomePageState extends State<ComicHomePage> {
                   ),
                 ),
               ),
-              Positioned(
-                  bottom: 10,
-                  left: 30,
-                  child: GestureDetector(
-                      onHorizontalDragEnd: (dragEndDetails) {
-                        if (dragEndDetails.primaryVelocity! < 0) {
-                          // Page forwards
-                          print('Move page forwards');
-                        } else if (dragEndDetails.primaryVelocity! > 0) {
-                          // Page backwards
-                          print('Move page backwards');
-                        }
-                      },
-                      onTap: (){
-
-                        // setState(() {
-                        //
-                        // });
-                        final newIndex = index - 1;
-                        //
-                        if (newIndex >= 0) {
-                          _controller.currentState?.previousPage();
-                          setState(() {
-
-                          });
-                        }
-                        else{
-                          Fluttertoast.showToast(msg: "First Page");
-                          // jokeProvider.currentIndex = jokeProvider.jokeList.length;
-                        }
-                      },
-                      child: Icon(Icons.arrow_circle_left_sharp, color: Colors.white,size: 40))),
+              // Positioned(
+              //     bottom: 10,
+              //     left: 30,
+              //     child: GestureDetector(
+              //         onHorizontalDragEnd: (dragEndDetails) {
+              //           if (dragEndDetails.primaryVelocity! < 0) {
+              //             // Page forwards
+              //             print('Move page forwards');
+              //           } else if (dragEndDetails.primaryVelocity! > 0) {
+              //             // Page backwards
+              //             print('Move page backwards');
+              //           }
+              //         },
+              //         onTap: (){
+              //
+              //           // setState(() {
+              //           //
+              //           // });
+              //           final newIndex = index - 1;
+              //           //
+              //           if (newIndex >= 0) {
+              //             _controller.currentState?.previousPage();
+              //             setState(() {
+              //
+              //             });
+              //           }
+              //           else{
+              //             Fluttertoast.showToast(msg: "First Page");
+              //             // jokeProvider.currentIndex = jokeProvider.jokeList.length;
+              //           }
+              //         },
+              //         child: Icon(Icons.arrow_circle_left_sharp, color: Colors.white,size: 40))),
               // 3rd Container with Visibility widget and text
               Positioned(
                 bottom: 60,

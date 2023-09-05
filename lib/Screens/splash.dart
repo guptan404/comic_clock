@@ -47,7 +47,11 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: loading?Center(
         child: EmojiContainer(context, 'random',''),
-      ):ComicBottomBar()
+      ):Consumer<ThemeProvider>(
+        builder: (_,themeProvider, __) {
+          return themeProvider.theme=="cartoon"?BottomBar():ComicBottomBar();
+        }
+      )
       );
   }
 }
