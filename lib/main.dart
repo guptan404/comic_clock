@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
            // onGenerateRoute: (settings) => generateRoute(settings),
           ),
-          home: ComicBottomBar(),
+          home: Splash(),
         )
     );
   }
