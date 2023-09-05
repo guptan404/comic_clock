@@ -118,6 +118,20 @@ class AppConstants {
     //color Colors.black, // Adjust text color as needed
   );
 
+  static TextStyle comicHeading = GoogleFonts.kavoon(
+      fontSize: 48,
+      fontWeight: FontWeight.bold,
+      color: cPrimaryColor
+    //color Colors.black, // Adjust text color as needed
+  );
+
+  static TextStyle comicSubHead = GoogleFonts.iceland(
+      fontSize: 35,
+      fontWeight: FontWeight.bold,
+      color: cPrimaryColor
+    //color Colors.black, // Adjust text color as needed
+  );
+
   static Map<String,TextStyle> fonts = {
     'Roboto Flex':AppConstants.robotoFlex,
     'Rockn Roll One':AppConstants.rocknRollOne,
@@ -154,7 +168,9 @@ String page7Img='assets/page7.png';
 String page8Img='assets/page8.png';
 String page9Img='assets/page9.png';
 String page10Img='assets/page10.png';
-
+String profilePageImg='assets/profilepage.png';
+String specchBoxImg='assets/speechBox.png';
+String collisionBox='assets/ColiisionBox.png';
 List<String> comicPages=[
   page1Img,
   page2Img,
