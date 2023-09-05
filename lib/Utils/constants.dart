@@ -17,6 +17,11 @@ Color kAccentColor2=Color(0xffFFE70D);  //gradient
 Color kAccentColor3=Color(0xffFF9E0D);   //gradient
 Color kdarkTextColor=Color(0xff000000);
 
+Color cSecondaryColor=Color(0xffFFC545);
+Color cPrimaryColor = Color(0xff000000);
+Color cAccentColor = Color(0xffFFFBFB);
+
+
 LinearGradient kBgGradient = LinearGradient(
   colors: [
     kSecondaryColor3,
@@ -105,6 +110,14 @@ class AppConstants {
       color: kPrimaryColor
     //color Colors.black, // Adjust text color as needed
   );
+
+  static TextStyle comic = GoogleFonts.comicNeue(
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      color: cPrimaryColor
+    //color Colors.black, // Adjust text color as needed
+  );
+
   static Map<String,TextStyle> fonts = {
     'Roboto Flex':AppConstants.robotoFlex,
     'Rockn Roll One':AppConstants.rocknRollOne,
@@ -130,6 +143,17 @@ String sunglassEmoImg="assets/sunglassEmoji.png";
 String thinkEmoImg="assets/thinkingEmoji.png";
 String pleadEmoImg="assets/pleadEmoji.png";
 String logo='assets/Logo.png';
+String page1Img='assets/page1.png';
+String page2Img='assets/page2.png';
+String page3Img='assets/page3.png';
+String page4Img='assets/page1.png';
+String page5Img='assets/page5.png';
+String page6Img='assets/page6.png';
+String page7Img='assets/page7.png';
+String page8Img='assets/page8.png';
+String page9Img='assets/page9.png';
+String page10Img='assets/page10.png';
+
 
 
 
@@ -150,6 +174,9 @@ class AppIcons {
   static  Icon sortDes = Icon(FontAwesome.arrow_down_wide_short, size:35,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
   static  Icon add = Icon(FontAwesome.plus, size:28,shadows: [Shadow(color: Colors.black,)]);
   static  Icon back = Icon(FontAwesome.arrow_left, size:35,shadows: [Shadow(color: Colors.black, blurRadius: 5)]);
+  static  Icon bomb = Icon(FontAwesome.bomb, size:35,color: cPrimaryColor,);
+  static  Icon cHome = Icon(Icons.home,size:30,color: cPrimaryColor,);
+  static  Icon cProfile= Icon(Icons.person_2,size:30,color: cPrimaryColor);
 
 }
 
