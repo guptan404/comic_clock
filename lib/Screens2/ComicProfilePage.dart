@@ -36,83 +36,82 @@ class _ComicProfilePageState extends State<ComicProfilePage> {
                   //borderRadius: BorderRadius.circular(20),
                 ),
 
-                child: Stack(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Positioned(
-                      right: 0,
-                      top:110 ,
-                      child:
-                        Container(
-                      width: 130, // Adjust the width as needed
-                      height: 110, // Adjust the height as needed
+                    SizedBox(height: 45,),
+                    Center(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          style: TextStyle(
+                            color: Colors.black, // Text color
+                            fontSize: 16,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'Comic',
+                                style: AppConstants.comicHeading.copyWith(fontSize: 50)
+                            ),
+                            TextSpan(text: '\n'), // New line
+                            TextSpan(
+                              text: 'clock',
+                              style: AppConstants.comicSubHead.copyWith(fontSize: 35),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 15,),
+                    Container(
+                      width: 220, // Adjust the width as needed
+                      height: 220, // Adjust the height as needed
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage(roundSpeechImg),
+                          image: AssetImage(doubleBubble),
                           // Replace with your image asset
                           fit: BoxFit.fill, // You can adjust the fit as needed
                         ),
                       ),
-                      child: Center(
-                        child: Text('Smiles Steve',style: AppConstants.comicSubHead.copyWith(fontSize: 20),softWrap: true,),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 25,),
+                          Row(
+                            children: [
+                              SizedBox(width: 25,),
+                              Text('Smiles Steve',style: AppConstants.comicSubHead.copyWith(fontSize: 20),softWrap: true,),
+                            ],
+                          ),
+                              SizedBox(height: 60,),
+                          Row(
+                            children: [
+                              SizedBox(width: 68),
+                              Column(
+                                children: [
+                                  Text("${jokeProvider.curentStreak} ",
+                                    style: AppConstants.comicSubHead.copyWith(fontSize: 33,fontWeight: FontWeight.bold,color: Colors.black),),
+                                  Text('Giggle Streak', style:
+                                  AppConstants.comicSubHead.copyWith(fontSize: 23,fontWeight: FontWeight.bold,color: Colors.black),),
+                                ],
+                              ),
+
+                            ],
+                          ),
+                         // AppIcons.bomb,
+
+                        ],
                       ),
 
-                    ),),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    ),
+                    SizedBox(height: 45,),
+                    Row(
                       children: [
-                        SizedBox(height: 45,),
-                        Center(
-                          child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              style: TextStyle(
-                                color: Colors.black, // Text color
-                                fontSize: 16,
-                              ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Comic',
-                                    style: AppConstants.comicHeading.copyWith(fontSize: 50)
-                                ),
-                                TextSpan(text: '\n'), // New line
-                                TextSpan(
-                                  text: 'clock',
-                                  style: AppConstants.comicSubHead.copyWith(fontSize: 35),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 15,),
-                        Container(
-                          width: 220, // Adjust the width as needed
-                          height: 220, // Adjust the height as needed
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(doubleBubble),
-                              // Replace with your image asset
-                              fit: BoxFit.fill, // You can adjust the fit as needed
-                            ),
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("${jokeProvider.curentStreak} ",
-                                  style: AppConstants.comicSubHead.copyWith(fontSize: 33,fontWeight: FontWeight.bold,color: Colors.black),),
-                               // AppIcons.bomb,
-                                Text('Giggle', style:
-                                AppConstants.comicSubHead.copyWith(fontSize: 23,fontWeight: FontWeight.bold,color: Colors.black),),
-                                  Text('Streak', style:
-                                  AppConstants.comicSubHead.copyWith(fontSize: 23,fontWeight: FontWeight.bold,color: Colors.black))
-                              ],
-                            ),
-                          ),
-
-                        ),
-                        SizedBox(height: 45,),
-                        Center(
+                        Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 15.0),
                           child: Container(
                             width: 250, // Adjust the width as needed
                             height:200, // Adjust the height as needed
@@ -173,11 +172,11 @@ class _ComicProfilePageState extends State<ComicProfilePage> {
 
                           ),
                         ),
-
-                        // Add your _thoughtBubble widget here
-                        // Add more widgets as needed
                       ],
                     ),
+
+                    // Add your _thoughtBubble widget here
+                    // Add more widgets as needed
                   ],
                 ),
               ),

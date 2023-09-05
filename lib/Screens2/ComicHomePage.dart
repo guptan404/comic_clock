@@ -191,9 +191,11 @@ class _ComicHomePageState extends State<ComicHomePage> {
                   height: 200,
                   width: 200,
                   // color: Colors.red,
-                  child: Text(
-                      joke.joke??"",
-                      style: AppConstants.comic
+                  child: SingleChildScrollView(
+                    child: Text(
+                        joke.joke??"",
+                        style: AppConstants.comic
+                    ),
                   ),
                 ),
               ),
