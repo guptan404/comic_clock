@@ -90,7 +90,7 @@ class _ComicProfilePageState extends State<ComicProfilePage> {
                           height: 220, // Adjust the height as needed
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(collisionBox),
+                              image: AssetImage(doubleBubble),
                               // Replace with your image asset
                               fit: BoxFit.fill, // You can adjust the fit as needed
                             ),
