@@ -1,7 +1,7 @@
 import 'package:comic_clock/Providers/ThemeProvider.dart';
 import 'package:comic_clock/Screens/splash.dart';
-import 'package:comic_clock/Screens/BottomBar.dart';
-import 'package:comic_clock/Screens2/ComicBottomBar.dart';
+import 'package:comic_clock/Screens/cartoon/BottomBar.dart';
+import 'package:comic_clock/Screens/comic/ComicBottomBar.dart';
 import 'package:comic_clock/Widgets/ListCardContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

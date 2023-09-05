@@ -2,11 +2,10 @@ import 'package:delayed_widget/delayed_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../Providers/JokeProvider.dart';
-import '../Providers/ThemeProvider.dart';
-import '../Utils/constants.dart';
-import '../Widgets/AppBar.dart';
-import '../Widgets/ListCardContainer.dart';
+import '../../Providers/JokeProvider.dart';
+import '../../Providers/ThemeProvider.dart';
+import '../../Utils/constants.dart';
+import '../../Widgets/AppBar.dart';
 
 class ProfilePage extends StatefulWidget {
   static const String routeName = '/profile';
@@ -75,6 +74,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   SizedBox(height: 5,),
                                   Center(
                                     child: DelayedWidget(
+                                      delayDuration: Duration(milliseconds: 100),// Not required
+                                        animationDuration: Duration(seconds: 1),// Not required
+                                        animation: DelayedAnimations.SLIDE_FROM_RIGHT,
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
@@ -86,9 +88,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                           Text(' Giggle Streak',style: themeProvider.selectedFont,)
                                         ],
                                       ),
-                                        delayDuration: Duration(milliseconds: 100),// Not required
-                                        animationDuration: Duration(seconds: 1),// Not required
-                                        animation: DelayedAnimations.SLIDE_FROM_RIGHT,
                                     ),
                                   )
                                 ],

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 class JokeModel {
   String? id;
   String? joke;

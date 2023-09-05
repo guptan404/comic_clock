@@ -3,10 +3,10 @@ import 'package:comic_clock/Utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../Providers/JokeProvider.dart';
-import '../Widgets/AppBar.dart';
-import '../Widgets/EmojiContainer.dart';
-import '../Widgets/ListCardContainer.dart';
+import '../../Providers/JokeProvider.dart';
+import '../../Widgets/AppBar.dart';
+import '../../Widgets/EmojiContainer.dart';
+import '../../Widgets/ListCardContainer.dart';
 import 'JokeCards.dart';
 
 class WishlistPage extends StatefulWidget {
@@ -99,7 +99,7 @@ class _WishlistPageState extends State<WishlistPage> {
                     child: Padding(
                       padding: const EdgeInsets.only(
                           top: 0, left: 12.0, right: 12.0),
-                      child: jokeProvider.jokeListFav.values.elementAt(selectedIndex).length==0?
+                      child: jokeProvider.jokeListFav.values.elementAt(selectedIndex).isEmpty?
                           Consumer<ThemeProvider>(
                             builder: (_,themeProvider,__) {
                               return Center(

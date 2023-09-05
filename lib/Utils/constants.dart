@@ -146,34 +146,31 @@ class AppConstants {
 
 //<-------------------------------------------------images------------------------------------------------->
 
-String cowboyEmojiImg="assets/cowboyEmoji.png";
-String bubble = "assets/bubble.png";
-String doubleBubble = "assets/doubleBubble.png";
+String cowboyEmojiImg="assets/emoji/cowboyEmoji.png";
+String bubble = "assets/comicSpeech/bubble.png";
+String doubleBubble = "assets/comicSpeech/doubleBubble.png";
 String hourglassImg="assets/hourglass.png";
-String winkEmojiImg="assets/winkEmoji.png";
-String fireEmoImg="assets/fireEmoji.png";
-String heartEyeEmoImg="assets/heartEyeEmoji.png";
-String littleSmileEmoImg="assets/littleSmileEmoji.png";
-String smileEmoImg="assets/smilingEmoji.png";
-String sunglassEmoImg="assets/sunglassEmoji.png";
-String thinkEmoImg="assets/thinkingEmoji.png";
-String pleadEmoImg="assets/pleadEmoji.png";
+String winkEmojiImg="assets/emoji/winkEmoji.png";
+String fireEmoImg="assets/emoji/fireEmoji.png";
+String heartEyeEmoImg="assets/emoji/heartEyeEmoji.png";
+String littleSmileEmoImg="assets/emoji/littleSmileEmoji.png";
+String smileEmoImg="assets/emoji/smilingEmoji.png";
+String sunglassEmoImg="assets/emoji/sunglassEmoji.png";
+String thinkEmoImg="assets/emoji/thinkingEmoji.png";
+String pleadEmoImg="assets/emoji/pleadEmoji.png";
 String logo='assets/Logo.png';
-String page1Img='assets/page1.png';
-String page2Img='assets/page2.png';
-String page3Img='assets/page3.png';
-String page4Img='assets/page1.png';
-String page5Img='assets/page5.png';
-String page6Img='assets/page6.png';
-String page7Img='assets/page7.png';
-String page8Img='assets/page8.png';
-String page9Img='assets/page9.png';
-String page10Img='assets/page10.png';
+String page1Img='assets/comicBackground/page1.png';
+String page2Img='assets/comicBackground/page2.png';
+String page3Img='assets/comicBackground/page3.png';
+String page4Img='assets/comicBackground/page4.png';
+String page5Img='assets/comicBackground/page5.png';
+String page6Img='assets/comicBackground/page6.png';
+String page7Img='assets/comicBackground/page7.png';
+String page8Img='assets/comicBackground/page8.png';
+String page9Img='assets/comicBackground/page9.png';
+String page10Img='assets/comicBackground/page10.png';
 String profilePageImg='assets/profilepage.png';
-String specchBoxImg='assets/speechBox.png';
-String collisionBox='assets/ColiisionBox.png';
-String roundSpeechImg='assets/roundSpeech.png';
-String yellowRoundSpeech='assets/yellowRoundSpeech.png';
+String yellowRoundSpeech='assets/comicSpeech/yellowRoundSpeech.png';
 List<String> comicPages=[
   page1Img,
   page2Img,

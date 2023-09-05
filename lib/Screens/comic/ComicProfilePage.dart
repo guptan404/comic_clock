@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
-import '../Providers/JokeProvider.dart';
-import '../Providers/ThemeProvider.dart';
-import '../Widgets/AppBar.dart';
+import '../../Providers/JokeProvider.dart';
+import '../../Providers/ThemeProvider.dart';
+import '../../Widgets/AppBar.dart';
 
 class ComicProfilePage extends StatefulWidget {
   const ComicProfilePage({Key? key}) : super(key: key);

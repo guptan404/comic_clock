@@ -1,16 +1,9 @@
-import 'dart:math';
-
-import 'package:comic_clock/Screens/HomePage.dart';
-import 'package:comic_clock/Screens/ProfilePage.dart';
-import 'package:comic_clock/Screens/WishlistPage.dart';
-import 'package:comic_clock/Utils/constants.dart';
-import 'package:comic_clock/Widgets/AppBar.dart';
-import 'package:comic_clock/Widgets/ElevatedIcon.dart';
+import 'package:comic_clock/Screens/cartoon/WishlistPage.dart';
 import 'package:flutter/material.dart';
 
-import '../Utils/GradientIcons.dart';
-import '../Widgets/CustomBottomNavigationBar.dart';
-import '../Utils/CustomShape.dart';
+import '../../Widgets/CustomBottomNavigationBar.dart';
+import 'HomePage.dart';
+import 'ProfilePage.dart';
 
 class BottomBar extends StatefulWidget {
   @override

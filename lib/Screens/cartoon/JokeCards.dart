@@ -1,20 +1,14 @@
-import 'dart:convert';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-
 import 'package:comic_clock/Widgets/EmojiListContainer.dart';
 import 'package:delayed_widget/delayed_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
-import '../Model/JokeModel.dart';
-import '../Providers/JokeProvider.dart';
-import '../Utils/constants.dart';
-import '../Widgets/AppBar.dart';
-import '../Widgets/CardContainer.dart';
-import '../Widgets/EmojiContainer.dart';
-import '../Widgets/ListCardContainer.dart';
+import '../../Model/JokeModel.dart';
+import '../../Providers/JokeProvider.dart';
+import '../../Utils/constants.dart';
+import '../../Widgets/AppBar.dart';
+import '../../Widgets/CardContainer.dart';
+import '../../Widgets/EmojiContainer.dart';
 
 class JokeCard extends StatefulWidget {
   final bool isFav;
@@ -43,22 +37,6 @@ class _JokeCardState extends State<JokeCard> {
   }
 
   GlobalKey globalKey = GlobalKey();
-
-
-  List<Widget> _getRandomEmojis() {
-    final List<String> emojis = ['😀', '😂', '😎', '🥳', '😊', '😜', '🤩', '😇', '🤔'];
-
-    // Shuffle the list of emojis randomly
-    emojis.shuffle();
-
-    // Generate a list of Text widgets for each emoji
-    return emojis.map((emoji) {
-      return Text(
-        emoji,
-        style: TextStyle(fontSize: 30),
-      );
-    }).toList();
-  }
 
 
   //int currentIndex=index;
@@ -155,19 +133,22 @@ class _JokeCardState extends State<JokeCard> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               DelayedWidget(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
-                                      SizedBox(width: 40,),
-                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
-                                    ],
-                                  ),
                                   delayDuration: Duration(milliseconds: 100),// Not required
                                   animationDuration: Duration(seconds: 1),// Not required
-                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM
+                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Image.asset("assets/laugh.gif",height: 50,width: 50,),
+                                      SizedBox(width: 40,),
+                                      Image.asset("assets/laugh2.gif",height: 50,width: 50,),
+                                    ],
+                                  )
                               ),
                               DelayedWidget(
+                                  delayDuration: Duration(milliseconds: 200),// Not required
+                                  animationDuration: Duration(seconds: 1),// Not required
+                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -178,12 +159,12 @@ class _JokeCardState extends State<JokeCard> {
                                       SizedBox(width: 40,),
                                       Image.asset("assets/laugh2.gif",height: 50,width: 50,),
                                     ],
-                                  ),
-                                  delayDuration: Duration(milliseconds: 200),// Not required
-                                  animationDuration: Duration(seconds: 1),// Not required
-                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM
+                                  )
                               ),
                               DelayedWidget(
+                                  delayDuration: Duration(milliseconds: 200),// Not required
+                                  animationDuration: Duration(seconds: 1),// Not required
+                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -198,13 +179,13 @@ class _JokeCardState extends State<JokeCard> {
                                       SizedBox(width: 40,),
                                       Image.asset("assets/laugh2.gif",height: 50,width: 50,),
                                     ],
-                                  ),
-                                  delayDuration: Duration(milliseconds: 200),// Not required
-                                  animationDuration: Duration(seconds: 1),// Not required
-                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM
+                                  )
                               ),
 
                               DelayedWidget(
+                                  delayDuration: Duration(milliseconds: 1200),// Not required
+                                  animationDuration: Duration(seconds: 1),// Not required
+                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -221,13 +202,13 @@ class _JokeCardState extends State<JokeCard> {
                                       Image.asset("assets/laugh.gif",height: 50,width: 50,),
                                       Image.asset("assets/laugh2.gif",height: 50,width: 50,),
                                     ],
-                                  ),
-                                  delayDuration: Duration(milliseconds: 1200),// Not required
-                                  animationDuration: Duration(seconds: 1),// Not required
-                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM
+                                  )
                               ),
 
                               DelayedWidget(
+                                  delayDuration: Duration(milliseconds: 2400),// Not required
+                                  animationDuration: Duration(seconds: 1),// Not required
+                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
@@ -239,10 +220,7 @@ class _JokeCardState extends State<JokeCard> {
                                       SizedBox(width: 40,),
                                       Image.asset("assets/laugh2.gif",height: 100,width: 100,),
                                     ],
-                                  ),
-                                  delayDuration: Duration(milliseconds: 2400),// Not required
-                                  animationDuration: Duration(seconds: 1),// Not required
-                                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM
+                                  )
                               ),
                             ],
                           ),

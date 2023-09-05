@@ -1,6 +1,5 @@
 
 import 'package:comic_clock/Utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +25,7 @@ Widget EmojiListContainer (BuildContext context,int ind) {
     // color: kPrimaryColor,
     height: 45,
     width: (56.0*(emojis.length))+offset,
-    constraints: BoxConstraints(
+    constraints: const BoxConstraints(
       maxWidth: 200.0, // Adjust the maximum width as needed
     ),
     decoration: BoxDecoration(

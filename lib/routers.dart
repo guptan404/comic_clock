@@ -1,9 +1,9 @@
-import 'package:comic_clock/Screens/HomePage.dart';
-import 'package:comic_clock/Screens/WishlistPage.dart';
+import 'package:comic_clock/Screens/cartoon/WishlistPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'Screens/ProfilePage.dart';
+import 'Screens/cartoon/HomePage.dart';
+import 'Screens/cartoon/ProfilePage.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   final args=routeSettings.arguments;

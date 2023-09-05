@@ -1,15 +1,12 @@
 
   import 'package:comic_clock/Providers/JokeProvider.dart';
 import 'package:comic_clock/Utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../Utils/GradientIcons.dart';
 
 Widget CustomAppBar(BuildContext context,bool backVisible,bool sortVIsible) {
-  JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
-
 
     return Consumer<JokeProvider>(
       builder: (_,jokeProvider,__) {

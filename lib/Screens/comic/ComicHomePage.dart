@@ -10,9 +10,9 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 
-import '../Model/JokeModel.dart';
-import '../Widgets/CardContainer.dart';
-import '../Widgets/EmojiListContainer.dart';
+import '../../Model/JokeModel.dart';
+import '../../Widgets/CardContainer.dart';
+import '../../Widgets/EmojiListContainer.dart';
 
 class ComicHomePage extends StatefulWidget {
   const ComicHomePage({Key? key}) : super(key: key);

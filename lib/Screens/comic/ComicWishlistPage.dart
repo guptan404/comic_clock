@@ -9,11 +9,11 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 
-import '../Model/JokeModel.dart';
-import '../Providers/ThemeProvider.dart';
-import '../Utils/constants.dart';
-import '../Widgets/CardContainer.dart';
-import '../Widgets/EmojiListContainer.dart';
+import '../../Model/JokeModel.dart';
+import '../../Providers/ThemeProvider.dart';
+import '../../Utils/constants.dart';
+import '../../Widgets/CardContainer.dart';
+import '../../Widgets/EmojiListContainer.dart';
 
 class ComicWishlistPage extends StatefulWidget {
   const ComicWishlistPage({Key? key}) : super(key: key);

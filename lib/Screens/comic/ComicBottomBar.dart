@@ -1,8 +1,7 @@
+import 'package:comic_clock/Screens/comic/ComicHomePage.dart';
 import 'package:comic_clock/Utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'ComicHomePage.dart';
 import 'ComicProfilePage.dart';
 import 'ComicWishlistPage.dart';
 

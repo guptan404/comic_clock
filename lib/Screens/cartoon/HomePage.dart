@@ -1,20 +1,13 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
-import 'package:comic_clock/Screens/JokeCards.dart';
 import 'package:comic_clock/Widgets/EmojiContainer.dart';
-import 'package:delayed_widget/delayed_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
-//import 'package:text_to_speech/text_to_speech.dart';
 
-import '../Providers/JokeProvider.dart';
-import '../Utils/constants.dart';
-import '../Widgets/AppBar.dart';
-import '../Widgets/ListCardContainer.dart';
-import 'dart:ui' as ui;
+import '../../Providers/JokeProvider.dart';
+import '../../Utils/constants.dart';
+import '../../Widgets/AppBar.dart';
+import '../../Widgets/ListCardContainer.dart';
+
+import 'JokeCards.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = '/home';
