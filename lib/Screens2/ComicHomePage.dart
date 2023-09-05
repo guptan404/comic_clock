@@ -1,10 +1,12 @@
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:comic_clock/Providers/JokeProvider.dart';
 import 'package:comic_clock/Utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:page_flip/page_flip.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:text_to_speech/text_to_speech.dart';
@@ -34,11 +36,28 @@ class _ComicHomePageState extends State<ComicHomePage> {
     return ''; // Return an empty string if not found
   }
 
+  final _controller = GlobalKey<PageFlipWidgetState>();
+
   @override
   Widget build(BuildContext context) {
+    // print("index is: $index");
     int randomNumber = random.nextInt(9);
     return  Scaffold(
-      body: Consumer<JokeProvider>(
+      body: PageFlipWidget(
+        key: _controller,
+        index: index,
+        children:[
+          for(int i=0;i<comicPages.length;i++)
+            pages(i)
+        ]
+
+      ),
+    );
+  }
+
+  Widget pages(int index)
+  {
+   return Consumer<JokeProvider>(
         builder: (_,jokeProvider,__) {
           List<JokeModel> favList=jokeProvider.extractAllJokes();
           var joke = jokeProvider.jokeList[index];
@@ -47,7 +66,7 @@ class _ComicHomePageState extends State<ComicHomePage> {
             children: [
               // 1st Container with an image
               Container(
-               // height: 200,
+                // height: 200,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(comicPages[index]),
@@ -65,8 +84,8 @@ class _ComicHomePageState extends State<ComicHomePage> {
                     Container(
                       child: Row(
                         children: [
-                        Visibility(
-                                  //replacement: SizedBox.expand(),
+                          Visibility(
+                            //replacement: SizedBox.expand(),
                               visible: jokeProvider.isEmojiListVisible,
                               child: EmojiListContainer(context,index)),
                         ],
@@ -102,25 +121,25 @@ class _ComicHomePageState extends State<ComicHomePage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             GestureDetector(
-                                onTap:(){
-                                  if(((joke.isFavourite??false)||favList.contains(joke)))
-                                    //remove a joke
-                                      {
-                                    jokeProvider.removeJokeFromFav(joke, findKeyForJoke(jokeProvider.jokeListFav, joke));
-                                    Fluttertoast.showToast(
-                                      msg: 'Removed from Favorites',
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: kAccentColor,
-                                      textColor: Colors.white,
-                                    );
-                                  }
-                                  else{
-                                    print("in else");
-                                    jokeProvider.toggleEmojiListVisibility();
-                                  }
-                                },
-                                child: ((joke.isFavourite??false)||favList.contains(joke)) ? AppIcons.save2 : AppIcons.unsaved2,
+                              onTap:(){
+                                if(((joke.isFavourite??false)||favList.contains(joke)))
+                                  //remove a joke
+                                    {
+                                  jokeProvider.removeJokeFromFav(joke, findKeyForJoke(jokeProvider.jokeListFav, joke));
+                                  Fluttertoast.showToast(
+                                    msg: 'Removed from Favorites',
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: kAccentColor,
+                                    textColor: Colors.white,
+                                  );
+                                }
+                                else{
+                                  print("in else");
+                                  jokeProvider.toggleEmojiListVisibility();
+                                }
+                              },
+                              child: ((joke.isFavourite??false)||favList.contains(joke)) ? AppIcons.save2 : AppIcons.unsaved2,
                             ),
                             GestureDetector(
                                 onTap:(){
@@ -142,52 +161,68 @@ class _ComicHomePageState extends State<ComicHomePage> {
               ),
 
               Positioned(
-                    bottom: 10,
-                    right: 30,
-                    child: GestureDetector(
-                        onTap: (){
-                          setState(() {
+                bottom: 10,
+                right: 30,
+                child: GestureDetector(
+                    onTap: (){
+                      // setState(() {
+                      //
+                      // });
+                      final newIndex = index + 1;
+                      if (newIndex < jokeProvider.jokeList.length) {
+                        this.index=newIndex;
+                        _controller.currentState?.nextPage();
+                        setState(() {
 
-                          });
-                          final newIndex = jokeProvider.jokeList.indexOf(joke) + 1;
-                          if (newIndex < jokeProvider.jokeList.length) {
-                            jokeProvider.currentIndex = newIndex;
-                            index = newIndex;
-                          }
-                          else{
-                            jokeProvider.currentIndex = 0;
-                            index=0;
-                          }
-                        },
-                        child:Icon(Icons.arrow_circle_right_sharp, color: Colors.white,size: 40)),
+                        });
+                      }
+                      else{
+                        Fluttertoast.showToast(msg: "Last Page");
+                        // jokeProvider.currentIndex = jokeProvider.jokeList.length;
+                      }
+                    },
+                    child:Icon(Icons.arrow_circle_right_sharp, color: Colors.white,size: 40)),
               ),
               //SizedBox(height: 10),
               Center(
                 child: Container(
                   height: 200,
                   width: 200,
-                  //color: Colors.red,
+                  // color: Colors.red,
                   child: Text(
-                    joke.joke??"",
-                    style: AppConstants.comic
+                      joke.joke??"",
+                      style: AppConstants.comic
                   ),
                 ),
               ),
               Positioned(
-                bottom: 10,
+                  bottom: 10,
                   left: 30,
                   child: GestureDetector(
+                      onHorizontalDragEnd: (dragEndDetails) {
+                        if (dragEndDetails.primaryVelocity! < 0) {
+                          // Page forwards
+                          print('Move page forwards');
+                        } else if (dragEndDetails.primaryVelocity! > 0) {
+                          // Page backwards
+                          print('Move page backwards');
+                        }
+                      },
                       onTap: (){
-                        setState(() {
 
-                        });
-                        final newIndex = jokeProvider.jokeList.indexOf(joke) - 1;
-
+                        // setState(() {
+                        //
+                        // });
+                        final newIndex = index - 1;
+                        //
                         if (newIndex >= 0) {
-                          jokeProvider.currentIndex = newIndex;
-                          index=newIndex;
+                          _controller.currentState?.previousPage();
+                          setState(() {
+
+                          });
                         }
                         else{
+                          Fluttertoast.showToast(msg: "First Page");
                           // jokeProvider.currentIndex = jokeProvider.jokeList.length;
                         }
                       },
@@ -210,8 +245,8 @@ class _ComicHomePageState extends State<ComicHomePage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "${joke.time}",
-                        style: AppConstants.comic.copyWith(fontSize: 30)
+                          "${joke.time}",
+                          style: AppConstants.comic.copyWith(fontSize: 30)
                       ),
                     ),
                   ),
@@ -220,7 +255,6 @@ class _ComicHomePageState extends State<ComicHomePage> {
             ],
           );
         }
-      ),
     );
   }
   void _onShare(BuildContext context,String text) async {
