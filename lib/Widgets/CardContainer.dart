@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:text_to_speech/text_to_speech.dart';
-import 'package:widgets_to_image/widgets_to_image.dart';
 
 import '../Model/JokeModel.dart';
 import '../Providers/JokeProvider.dart';
