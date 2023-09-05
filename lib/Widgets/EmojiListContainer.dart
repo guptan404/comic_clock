@@ -18,11 +18,14 @@ void _showEmojiInputDialog(BuildContext context) {
 Widget EmojiListContainer (BuildContext context,int ind) {
   final jokeProvider = Provider.of<JokeProvider>(context);
   final emojis = jokeProvider.jokeListFav.keys.toList();
+  print("emojis.length: ${emojis.length}");
+
+  double offset = emojis.length==1?13:0;
 
   return Container(
     // color: kPrimaryColor,
     height: 45,
-    width: 55.0*(emojis.length),
+    width: (56.0*(emojis.length))+offset,
     constraints: BoxConstraints(
       maxWidth: 200.0, // Adjust the maximum width as needed
     ),

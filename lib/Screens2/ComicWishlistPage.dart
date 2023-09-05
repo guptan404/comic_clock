@@ -108,7 +108,7 @@ class _ComicWishlistPageState extends State<ComicWishlistPage> {
                                   padding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0), // Add padding to each item
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0),
-                                    color: kSecondaryColor,
+                                    color: kdarkTextColor.withOpacity(0.8),
                                   ),
                                   child: Row(
                                     children: [
@@ -122,7 +122,7 @@ class _ComicWishlistPageState extends State<ComicWishlistPage> {
                                             builder: (_,themeProvider,__) {
                                               return Text(
                                                 "${emojiList[1]} ",
-                                                style: AppConstants.kText.copyWith(color: kdarkTextColor),
+                                                style: AppConstants.kText.copyWith(color: kPrimaryColor),
                                               );
                                             }
                                         ),
