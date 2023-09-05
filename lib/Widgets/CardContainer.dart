@@ -12,6 +12,7 @@ import '../Providers/JokeProvider.dart';
 import '../Utils/constants.dart';
 
   Widget CardContainer(BuildContext context,int index,JokeModel joke,bool isFav) {
+
     String findKeyForJoke(Map<String, List<JokeModel>> jokeListFav, JokeModel jokeToFind) {
       for (var entry in jokeListFav.entries) {
         if (entry.value.contains(jokeToFind)) {
@@ -24,6 +25,11 @@ import '../Utils/constants.dart';
     return Consumer<JokeProvider>(
         builder: (_,jokeProvider, __)  {
           List<JokeModel> favList=jokeProvider.extractAllJokes();
+          int? totalSeconds = jokeProvider.jokeList[index].time;
+          int minutes = totalSeconds! ~/ 60; // ~/ operator gives you the integer division
+          int seconds = totalSeconds % 60;
+
+          String formattedTime = '$minutes:${seconds.toString().padLeft(2,'0')}';
         return Container(
           width: MediaQuery.of(context).size.width * 0.75,
           height: MediaQuery.of(context).size.height * 0.56,
@@ -54,7 +60,7 @@ import '../Utils/constants.dart';
                         child: Visibility(
                           visible:!((joke.isFavourite??false)||favList.contains(joke)),//not if status is true
                           child:Text(
-                            "Time Left: "+jokeProvider.jokeList[index].time.toString(), // id
+                            "$formattedTime",// id
                             style: themeProvider.selectedFont, // id
                             // Use your timer text style
                           ),
