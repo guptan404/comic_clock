@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:comic_clock/Providers/JokeProvider.dart';
 import 'package:comic_clock/Utils/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,7 +11,6 @@ import 'package:share_plus/share_plus.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 
 import '../Model/JokeModel.dart';
-import '../Utils/listEnum.dart';
 import '../Widgets/CardContainer.dart';
 import '../Widgets/EmojiListContainer.dart';
 

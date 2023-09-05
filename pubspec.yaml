@@ -40,13 +40,11 @@ dependencies:
   http: ^1.1.0
   icons_plus: ^4.0.0
   google_fonts: ^4.0.1
-  simple_animations: ^5.0.2
   delayed_widget: ^1.1.2
   text_to_speech: ^0.2.3
   share_plus: ^7.1.0
   fluttertoast: ^8.0.7
   page_flip: ^0.1.0
-  audioplayers: ^5.1.0
   assets_audio_player: ^3.1.1
 
 dev_dependencies:

@@ -41,12 +41,112 @@ class _ComicWishlistPageState extends State<ComicWishlistPage> {
   Widget build(BuildContext context) {
     JokeProvider jokeProvider = Provider.of<JokeProvider>(context, listen: false);
     return  Scaffold(
-      body: PageFlipWidget(
+      body: jokeProvider.jokeListFav.values.elementAt(selectedIndex).length==0?
+          Stack(
+            children: [
+              Container(
+                // height: 200,
+                decoration: BoxDecoration(
+                  color: cSecondaryColor,
+                ),
+              ),
+              Align(
+                alignment: Alignment.center,
+                child:Image.asset(bubble,scale: 0.7,),
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: 200,
+                  width: 200,
+                  // color: Colors.red,
+                  child: Center(
+                    child: Text(
+                        "Joke not found, but we found your smile! 😄",
+                        style: AppConstants.comic
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Visibility(
+                    visible: true, // Set this to control visibility
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: cAccentColor,
+                        borderRadius: BorderRadius.circular(5.0),
+                        border: Border.all(
+                          color: Colors.black, // Border color
+                          width: 5.0, // Border width
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: jokeProvider.jokeListFav.keys.length,
+                            itemBuilder: (context, index) {
+                              final emoji = jokeProvider.jokeListFav.keys.elementAt(index);
+                              final emojiList=emoji.split(' ');
+                              // final
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedEmoji = emoji;
+                                    selectedIndex=index;
+                                    print(selectedEmoji);
+                                  });
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.all(8.0), // Add margin between items
+                                  padding: EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0), // Add padding to each item
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    color: kSecondaryColor,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        " ${emojiList[0]} ",
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                      Visibility(
+                                        visible: selectedIndex==index,
+                                        child: Consumer<ThemeProvider>(
+                                            builder: (_,themeProvider,__) {
+                                              return Text(
+                                                "${emojiList[1]} ",
+                                                style: AppConstants.kText.copyWith(color: kdarkTextColor),
+                                              );
+                                            }
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )
+          :PageFlipWidget(
           key: _controller,
           index: index,
           children:[
             for(int i=0;i<jokeProvider.jokeListFav.values.elementAt(selectedIndex).length;i++)
-              pages(i,0)
+              pages(i,selectedIndex)
           ]
 
       ),
@@ -272,7 +372,7 @@ class _ComicWishlistPageState extends State<ComicWishlistPage> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        " ${emojiList[0]}",
+                                        " ${emojiList[0]} ",
                                         style: TextStyle(fontSize: 20),
                                       ),
                                       Visibility(
@@ -280,7 +380,7 @@ class _ComicWishlistPageState extends State<ComicWishlistPage> {
                                         child: Consumer<ThemeProvider>(
                                             builder: (_,themeProvider,__) {
                                               return Text(
-                                                " ${emojiList[1]} ",
+                                                "${emojiList[1]} ",
                                                 style: AppConstants.kText.copyWith(color: kdarkTextColor),
                                               );
                                             }

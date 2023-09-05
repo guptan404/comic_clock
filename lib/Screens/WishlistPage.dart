@@ -72,7 +72,7 @@ class _WishlistPageState extends State<WishlistPage> {
                           child: Row(
                             children: [
                               Text(
-                                " ${emojiList[0]}",
+                                " ${emojiList[0]} ",
                                 style: TextStyle(fontSize: 20),
                               ),
                               Visibility(
@@ -80,7 +80,7 @@ class _WishlistPageState extends State<WishlistPage> {
                                 child: Consumer<ThemeProvider>(
                                   builder: (_,themeProvider,__) {
                                     return Text(
-                                      " ${emojiList[1]} ",
+                                      "${emojiList[1]} ",
                                       style: AppConstants.kText.copyWith(color: kdarkTextColor),
                                     );
                                   }
