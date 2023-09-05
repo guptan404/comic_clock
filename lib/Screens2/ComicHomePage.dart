@@ -259,7 +259,6 @@ class _ComicHomePageState extends State<ComicHomePage> {
             ],
           );
         }
-      ),
     );
   }
   void _onShare(BuildContext context,String text) async {
