@@ -1,6 +1,7 @@
 import 'package:comic_clock/Providers/JokeProvider.dart';
 import 'package:comic_clock/Providers/ThemeProvider.dart';
 import 'package:comic_clock/Screens/BottomBar.dart';
+import 'package:comic_clock/Screens2/ComicBottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -46,7 +47,7 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: loading?Center(
         child: EmojiContainer(context, 'random',''),
-      ):BottomBar()
+      ):ComicBottomBar()
       );
   }
 }
