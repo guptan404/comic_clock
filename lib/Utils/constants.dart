@@ -172,6 +172,7 @@ String profilePageImg='assets/profilepage.png';
 String specchBoxImg='assets/speechBox.png';
 String collisionBox='assets/ColiisionBox.png';
 String roundSpeechImg='assets/roundSpeech.png';
+String yellowRoundSpeech='assets/yellowRoundSpeech.png';
 List<String> comicPages=[
   page1Img,
   page2Img,
