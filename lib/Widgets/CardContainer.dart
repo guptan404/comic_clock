@@ -52,7 +52,7 @@ import '../Utils/constants.dart';
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         //Spacer(),
 
