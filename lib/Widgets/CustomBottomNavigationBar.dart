@@ -24,7 +24,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       print(index);
     });
 
-    // Notify the parent widget about the selected tab.
     widget.onTabSelected(index);
   }
 
@@ -43,11 +42,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                 height: h,
                 color: Color.fromRGBO(77, 218, 249, 0.42),
                 width: MediaQuery.of(context).size.width,
-                // decoration: const BoxDecoration(
-                //     borderRadius: BorderRadius.vertical(
-                //       top: Radius.circular(360),
-                //     ),
-                //     color: Colors.orange),
+
 
               ),
             ),
@@ -76,7 +71,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   child: Padding(
                     padding: EdgeInsets.only(bottom: h/3),
                     child: Image.asset(
-                      winkEmojiImg, // Replace with your image asset
+                      winkEmojiImg,
                       width: 70,
                       height: 70,
                     )

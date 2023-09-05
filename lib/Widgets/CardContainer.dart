@@ -62,7 +62,7 @@ import '../Utils/constants.dart';
                           child:Text(
                             "$formattedTime",// id
                             style: themeProvider.selectedFont, // id
-                            // Use your timer text style
+
                           ),
                         ),
                       ),
@@ -144,13 +144,7 @@ String uri = '';
 List<String> imageNames = [];
 List<String> imagePaths = [];
 void _onShare(BuildContext context,String text) async {
-  // A builder is used to retrieve the context immediately
-  // surrounding the ElevatedButton.
-  //
-  // The context's `findRenderObject` returns the first
-  // RenderObject in its descendent tree when it's not
-  // a RenderObjectWidget. The ElevatedButton's RenderObject
-  // has its position and size after it's built.
+
   final box = context.findRenderObject() as RenderBox?;
 
   if (uri.isNotEmpty) {
@@ -158,9 +152,7 @@ void _onShare(BuildContext context,String text) async {
   } else if (imagePaths.isNotEmpty) {
     final files = <XFile>[];
 
-      // save the bytes as image file
-      // final file = XFile.fromData(bytes!, name: "Joke");
-      // files.add(file);
+
     await Share.shareXFiles(files,
         text: text,
         subject: subject,

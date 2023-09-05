@@ -59,10 +59,10 @@ Widget EmojiContainer (BuildContext context,String type,String emoji) {
               :Text(emoji,style: TextStyle(fontSize: 180),)
               ),
             ),
-            SizedBox(height: 10), // Add SizedBox for vertical spacing
+            SizedBox(height: 10),
           ],
         ),
-        // Add SizedBox for horizontal spacing
+
         Row(
           children: [
            SizedBox(width: 250,),
@@ -74,10 +74,10 @@ Widget EmojiContainer (BuildContext context,String type,String emoji) {
                 height: 120,
               ),
             ),
-            SizedBox(height: 10), // Add SizedBox for vertical spacing
+            SizedBox(height: 10),
           ],
         ),
-        SizedBox(width: 40), // Add SizedBox for horizontal spacing
+        SizedBox(width: 40),
         Row(
 
           children: [
@@ -90,10 +90,10 @@ Widget EmojiContainer (BuildContext context,String type,String emoji) {
                 height: 70,
               ),
             ),
-            // Add SizedBox for vertical spacing
+
           ],
         ),
-        SizedBox(width: 10), // Add SizedBox for horizontal spacing
+        SizedBox(width: 10),
         Padding(
           padding: const EdgeInsets.all(25.0),
           child: Row(
@@ -107,7 +107,7 @@ Widget EmojiContainer (BuildContext context,String type,String emoji) {
                   height: 90,
                 ),
               ),
-              SizedBox(height: 80), // Add SizedBox for vertical spacing
+              SizedBox(height: 80),
             ],
           ),
         ),
@@ -136,8 +136,8 @@ Widget EmojiContainer (BuildContext context,String type,String emoji) {
               ),
             ),
           ],
-        ),// Add SizedBox for horizontal spacing
-        // Add more columns and SizedBox widgets as needed
+        ),
+
       ],
     ),
   );

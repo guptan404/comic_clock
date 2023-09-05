@@ -23,7 +23,6 @@ class _WishlistPageState extends State<WishlistPage> {
   Widget build(BuildContext context) {
     JokeProvider jokeProvider =
         Provider.of<JokeProvider>(context, listen: false);
-    // jokeProvider.getJokesFromSharedPrefrences();
     final height = MediaQuery.of(context).size.height;
 
     String selectedEmoji = jokeProvider.jokeListFav.keys.elementAt(0);

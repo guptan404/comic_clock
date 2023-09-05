@@ -33,7 +33,7 @@ class _ComicProfilePageState extends State<ComicProfilePage> {
                     // Image asset as the background
                     fit: BoxFit.cover, // You can adjust the fit as needed
                   ),
-                  //borderRadius: BorderRadius.circular(20),
+
                 ),
 
                 child: Column(
@@ -153,7 +153,7 @@ class _ComicProfilePageState extends State<ComicProfilePage> {
                                     children: [
                                       Radio(
                                         value: 'comic',
-                                        groupValue: _selectedTheme, // Use the same variable to track the selected theme
+                                        groupValue: _selectedTheme,
                                         onChanged: (value) {
                                           setState(() {
                                             themeProvider.changeTheme(value!);

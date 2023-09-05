@@ -9,7 +9,7 @@ import '../Utils/GradientIcons.dart';
 
 Widget CustomAppBar(BuildContext context,bool backVisible,bool sortVIsible) {
   JokeProvider jokeProvider = Provider.of<JokeProvider>(context,listen: false);
-  // jokeProvider.getJokesFromSharedPrefrences();
+
 
     return Consumer<JokeProvider>(
       builder: (_,jokeProvider,__) {
@@ -30,14 +30,14 @@ Widget CustomAppBar(BuildContext context,bool backVisible,bool sortVIsible) {
                       width: 50.0,
                       height: 50.0,
                       decoration: BoxDecoration(
-                        color: kPrimaryColor, // Replace with your primary color
+                        color: kPrimaryColor,
                         borderRadius: BorderRadius.circular(15.0),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
                             //spreadRadius: 5,
                             blurRadius: 5,
-                            offset: Offset(5, 5), // Adjust the shadow offset
+                            offset: Offset(5, 5),
                           ),
                         ],
                       ),
@@ -63,13 +63,13 @@ Widget CustomAppBar(BuildContext context,bool backVisible,bool sortVIsible) {
                       color: Colors.grey.withOpacity(0.5),
                       //spreadRadius: 5,
                       blurRadius: 5,
-                      offset: Offset(5, 5), // Adjust the shadow offset
+                      offset: Offset(5, 5),
                     ),
                   ],
                 ),
                 child: Center(
                   child: Image.asset(
-                    logo, // Replace with your image asset
+                    logo,
 
                     height: 50,
                   )

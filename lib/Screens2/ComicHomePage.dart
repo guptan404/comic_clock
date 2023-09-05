@@ -199,39 +199,7 @@ class _ComicHomePageState extends State<ComicHomePage> {
                   ),
                 ),
               ),
-              // Positioned(
-              //     bottom: 10,
-              //     left: 30,
-              //     child: GestureDetector(
-              //         onHorizontalDragEnd: (dragEndDetails) {
-              //           if (dragEndDetails.primaryVelocity! < 0) {
-              //             // Page forwards
-              //             print('Move page forwards');
-              //           } else if (dragEndDetails.primaryVelocity! > 0) {
-              //             // Page backwards
-              //             print('Move page backwards');
-              //           }
-              //         },
-              //         onTap: (){
-              //
-              //           // setState(() {
-              //           //
-              //           // });
-              //           final newIndex = index - 1;
-              //           //
-              //           if (newIndex >= 0) {
-              //             _controller.currentState?.previousPage();
-              //             setState(() {
-              //
-              //             });
-              //           }
-              //           else{
-              //             Fluttertoast.showToast(msg: "First Page");
-              //             // jokeProvider.currentIndex = jokeProvider.jokeList.length;
-              //           }
-              //         },
-              //         child: Icon(Icons.arrow_circle_left_sharp, color: Colors.white,size: 40))),
-              // 3rd Container with Visibility widget and text
+
               Positioned(
                 bottom: 60,
                 left: 170,
@@ -262,13 +230,7 @@ class _ComicHomePageState extends State<ComicHomePage> {
     );
   }
   void _onShare(BuildContext context,String text) async {
-    // A builder is used to retrieve the context immediately
-    // surrounding the ElevatedButton.
-    //
-    // The context's `findRenderObject` returns the first
-    // RenderObject in its descendent tree when it's not
-    // a RenderObjectWidget. The ElevatedButton's RenderObject
-    // has its position and size after it's built.
+
     final box = context.findRenderObject() as RenderBox?;
 
     if (uri.isNotEmpty) {
@@ -276,9 +238,7 @@ class _ComicHomePageState extends State<ComicHomePage> {
     } else if (imagePaths.isNotEmpty) {
       final files = <XFile>[];
 
-      // save the bytes as image file
-      // final file = XFile.fromData(bytes!, name: "Joke");
-      // files.add(file);
+
       await Share.shareXFiles(files,
           text: text,
           subject: subject,

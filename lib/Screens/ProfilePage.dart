@@ -147,11 +147,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             children: [
                               Radio(
                                 value: 'comic',
-                                groupValue: _selectedTheme, // Use the same variable to track the selected theme
+                                groupValue: _selectedTheme,
                                 onChanged: (value) {
                                   setState(() {
                                     themeProvider.changeTheme(value!);
-                                    _selectedTheme = value!; // Update the selected theme to "comic"
+                                    _selectedTheme = value!;
                                   });
                                 },
                                 activeColor: kSecondaryColor,
@@ -191,8 +191,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: DropdownButton<String>(
                              // border: Border.all(color: Colors.grey), // Add border decoration
                               borderRadius: BorderRadius.circular(8.0),
-                              isExpanded: true, // Reduces the height of the dropdown
-                              value: themeProvider.cf, // Set the initial selected value
+                              isExpanded: true, // Set the initial selected value
                               onChanged: (value) {
                                 // Handle font selection here
                                 themeProvider.cf=value!;
@@ -204,13 +203,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                   DropdownMenuItem(
                                     value: font,
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0), // Add padding as needed
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Container(
 
                                         decoration: BoxDecoration(
                                           gradient: kAccentGradient,
-                                          //border: Border.all(color: Colors.grey), // Add border decoration
-                                          borderRadius: BorderRadius.circular(8.0), // Adjust the border radius
+
+                                          borderRadius: BorderRadius.circular(8.0),
                                         ),
                                         child: Center(
                                           child: Text(
@@ -240,7 +239,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   boxShadow: [
                                     BoxShadow(
                                       color: kAccentColor,
-                                      offset: Offset(5, 5), // Shadow offset for bottom and right
+                                      offset: Offset(5, 5),
                                       //blurRadius: 5,
                                     ),
                                   ],
